@@ -1,0 +1,2634 @@
+const transaksi = [
+  // Sales Order
+  {
+    transTitle: 'Sales Order',
+    transRouting: 'sales-order',
+    transProperties: [
+      {
+        dataName: 'menuList', dataMicro: [
+          { key: 'transDate', microName: 'Order Date', microType: 'date', width: 0, microText: '', microFormat: 'DD-MM-YYYY', microClass: '' },
+          { key: 'transKasir', microName: 'Sales', microType: 'text', width: 150, microText: '', microFormat: '', microClass: '' },
+          { key: 'transName', microName: 'Customer', microType: 'text', width: 150, microText: '', microFormat: '', microClass: '' },
+          { key: 'transShipTo', microName: 'Ship To', microType: 'text', width: 0, microText: '', microFormat: '', microClass: '' },
+          { key: 'transShipmentPlanDate', microName: 'Ship Plan', microType: 'text', width: 100, microText: '', microFormat: '', microClass: '' },
+          { key: 'status', microName: 'Status', microType: 'text', width: 100, microText: '', microFormat: '', microClass: '' },
+          { key: 'opsi', microName: '', microType: 'dropdown', width: 0, microText: '', microFormat: '', microClass: '' },
+        ]
+      },
+      {
+        dataName: 'routingButton', dataTitle: 'button', dataClass: 'col-md-12', dataMicro: [
+          { key: 'add', microName: '', microRouting: 'add', microText: '', microClass: 'btn-primary' }
+        ]
+      }
+    ],
+    transData: [
+      {
+        key: '001',
+        header: [
+          { key: 'H001', orderNumber: 'SO0001', orderDate: '2023-12-01', sales: 'Mamat', customer: 'Yamaaf', shipTo: '-', shipPlan: '-', status: 'complete' }
+        ],
+        table: [
+          { productCode: 'MIE001', productName: 'Mie Gelas', desc: '-', tableUoM: 'pcs', tableQty: 10, tablePriceCode: 'PH001', tablePrice: 10000, tableTotal: 100000 }
+        ],
+        footer: [
+          { note: 'Nggak Ada', diskon: 10 }
+        ]
+      },
+      {
+        key: '002',
+        header: [
+          { key: 'H002', orderNumber: 'SO0002', orderDate: '2023-12-01', sales: 'Mamat', customer: 'Yamaaf', shipTo: '-', shipPlan: '-', status: 'complete' }
+        ],
+        table: [
+          { productCode: 'MIE001', productName: 'Mie Gelas', desc: '-', tableUoM: 'pcs', tableQty: 10, tablePriceCode: 'PH001', tablePrice: 10000, tableTotal: 100000 }
+        ],
+        footer: [
+          { note: 'Nggak Ada', diskon: 10 }
+        ]
+      },
+      {
+        key: '003',
+        header: [
+          { key: 'H003', orderNumber: 'SO0003', orderDate: '2023-12-01', sales: 'Mamat', customer: 'Yamaaf', shipTo: '-', shipPlan: '-', status: 'complete' }
+        ]
+      },
+      {
+        key: '004',
+        header: [
+          { key: 'H004', orderNumber: 'SO0004', orderDate: '2023-12-01', sales: 'Mamat', customer: 'Yamaaf', shipTo: '-', shipPlan: '-', status: 'complete' }
+        ]
+      },
+      {
+        key: '005',
+        header: [
+          { key: 'H005', orderNumber: 'SO0005', orderDate: '2023-12-01', sales: 'Mamat', customer: 'Yamaaf', shipTo: '-', shipPlan: '-', status: 'complete' }
+        ]
+      },
+    ]
+  },
+  {
+    transTitle: 'Sales Order',
+    transRouting: 'sales-order-add',
+    transProperties: [
+      {
+        dataName: 'menuAdd', dataMicro: [
+          {
+            componentName: 'fieldHeader', componentTitle: '', componentClass: 'col-md-6', componentMicro: [
+              { key: 'orderNumber', microName: 'Order Number', microType: 'text', microText: 'Order number', microClass: '', microValue:'' },
+              { key: 'orderDate', microName: 'Order Date', microType: 'date', microText: 'Masukan tanggal order', microClass: '', microValue:'' },
+              { key: 'sales', microName: 'Nama Sales', microType: 'multiselect', microOptions: [], microClass: '', microValue:'' },
+            ]
+          },
+          {
+            componentName: 'fieldHeader', componentTitle: '', componentClass: 'col-md-6', componentMicro: [
+              { key: 'customer', microName: 'Customer', microType: 'multiselect', microOptions: [], microClass: '', microValue:'' },
+              { key: 'shipPlan', microName: 'Shipment plan', microType: 'date', microText: 'Masukan tanggal order', microClass: '', microValue:'' },
+              { key: 'shipTo', microName: 'Ship to', microType: 'multiselect', microOptions: [], microClass: '', microValue:'' },
+            ]
+          },
+          {
+            componentName: 'fieldTable', componentTitle: '', componentClass: 'col-md-12', componentMicro: [
+              { key: 'productCode', microName: 'Kode Produk', microType: 'autocomplete', width: 100, microOptions: [], microFormat: 'DD-MM-YYYY', microClass: '', },
+              { key: 'productName', microName: 'Nama Produk', microType: 'autocomplete', width: 200, microOptions: [], microClass: '', },
+              { key: 'itemTopping', microName: 'Add-On', microType: 'text', width: 0, microText: 'Masukan Spesifikasi', microClass: '', },
+              { key: 'tableUoM', microName: 'UoM', microType: 'text', width: 50, microText: 'Masukan Quantity', microClass: '', },
+              { key: 'tableQty', microName: 'Qty', microType: 'numeric', width: 50, microText: 'Masukan Quantity', microClass: '', },
+              { key: 'tablePriceCode', microName: 'Price Code', microType: 'text', width: 100, microOptions: [], microClass: '', },
+              { key: 'tablePrice', microName: 'Harga Satuan', microType: 'numeric', width: 100, microText: 'Masukan Nama', microClass: '', },
+              { key: 'tableTotal', microName: 'Total', microType: 'numeric', width: 0, microText: 'Masukan Unit', microClass: '', },
+            ]
+          },
+          {
+            componentName: 'fieldNote', componentTitle: 'Catatan', componentClass: 'col-md-12', componentMicro: [
+              { key: 'note', microName: 'Note', microType: 'textarea', microText: 'Masukan Catatan Tambahan', microClass: '', microValue:'' }
+            ]
+          },
+          {
+            componentName: 'fieldTotal', componentTitle: 'Total', componentClass: 'col-md-12', componentMicro: [
+              { key: 'tableTotal', microName: 'Sub Total', value: '', editableTotal: false, fixedValue: false, microType: 'number', microMath: 'plus', microClass: 'col-md-4' },
+              { key: 'diskon', microName: 'Diskon (%)', value: '', editableTotal: true, fixedValue: false, microType: 'number', microMath: 'percent-minus', microClass: 'col-md-4' },
+              { key: 'dp', microName: 'DP (Rp)', value: '', editableTotal: true, fixedValue: false, microType: 'number', microMath: 'percent-minus', microClass: 'col-md-4' },
+              { key: 'ppn', microName: 'PPn (%)', value: 11, editableTotal: false, fixedValue: true, microType: 'number', microMath: 'percent-minus', microClass: 'col-md-4' },
+              { key: 'total', microName: 'Grand Total', editableTotal: false, fixedValue: false, value: '', microType: 'number', microClass: 'col-md-4' }
+            ]
+          },
+          {
+            componentName: 'routingButton', componentTitle: 'button', componentClass: 'col-md-12', componentMicro: [
+              { key: 'back', microName: 'Kembali', microRouting: 'back', microText: 'Kembali', microClass: 'btn-light' },
+              { key: 'submit', microName: '', microRouting: 'add', microText: '', microClass: 'btn-primary' }
+            ]
+          },
+        ]
+      }
+    ],
+  },
+  {
+    transTitle: 'Sales Order ',
+    transRouting: 'sales-order-detail',
+    transProperties: [
+      {
+        dataName: 'menuAdd', dataMicro: [
+          {
+            componentName: 'fieldHeader', componentTitle: '', componentClass: 'col-md-6', componentMicro: [
+              { key: 'orderNumber', microName: 'Order Number', microType: 'text', microText: 'Order number', microClass: '', microValue:'' },
+              { key: 'transDate', microName: 'Order Date', microType: 'date', microText: 'Masukan tanggal order', microClass: '', microValue:'' },
+              { key: 'transKasir', microName: 'Nama Sales', microType: 'multiselect', microOptions: [], microClass: '', microValue:'' },
+            ]
+          },
+          {
+            componentName: 'fieldHeader', componentTitle: '', componentClass: 'col-md-6', componentMicro: [
+              { key: 'transName', microName: 'Customer', microType: 'multiselect', microOptions: [], microClass: '', microValue:'' },
+              { key: 'transShipmentPlanDate', microName: 'Shipment plan', microType: 'date', microText: 'Masukan tanggal order', microClass: '', microValue:'' },
+              { key: 'transShipTo', microName: 'Ship to', microType: 'multiselect', microOptions: [], microClass: '', microValue:'' },
+            ]
+          },
+          {
+            componentName: 'fieldTable', componentTitle: '', componentClass: 'col-md-12', componentMicro: [
+              { key: 'itemCode', microName: 'Kode Produk', microType: 'autocomplete', width: 100, microOptions: [], microFormat: 'DD-MM-YYYY', microClass: '', },
+              { key: 'itemName', microName: 'Nama Produk', microType: 'autocomplete', width: 200, microOptions: [], microClass: '', },
+              { key: 'itemTopping', microName: 'Add-On', microType: 'text', width: 0, microText: 'Masukan Spesifikasi', microClass: '', },
+              { key: 'tableUoM', microName: 'UoM', microType: 'text', width: 50, microText: 'Masukan Quantity', microClass: '', },
+              { key: 'itemQty', microName: 'Qty', microType: 'numeric', width: 50, microText: 'Masukan Quantity', microClass: '', },
+              { key: 'tablePriceCode', microName: 'Price Code', microType: 'text', width: 100, microOptions: [], microClass: '', },
+              { key: 'tablePrice', microName: 'Harga Satuan', microType: 'numeric', width: 100, microText: 'Masukan Nama', microClass: '', },
+              { key: 'tableTotal', microName: 'Total', microType: 'numeric', width: 0, microText: 'Masukan Unit', microClass: '', },
+            ]
+          },
+          {
+            componentName: 'fieldNote', componentTitle: 'Catatan', componentClass: 'col-md-12', componentMicro: [
+              { key: 'note', microName: 'Note', microType: 'textarea', microText: 'Masukan Catatan Tambahan', microClass: '', microValue:'' }
+            ]
+          },
+          {
+            componentName: 'fieldTotal', componentTitle: 'Total', componentClass: 'col-md-12', componentMicro: [
+              { key: 'tableTotal', microName: 'Sub Total', value: '', editableTotal: false, fixedValue: false, microType: 'number', microMath: 'plus', microClass: 'col-md-4' },
+              { key: 'diskon', microName: 'Diskon (%)', value: '', editableTotal: true, fixedValue: false, microType: 'number', microMath: 'percent-minus', microClass: 'col-md-4' },
+              { key: 'ppn', microName: 'PPn (%)', value: 11, editableTotal: false, fixedValue: true, microType: 'number', microMath: 'percent-minus', microClass: 'col-md-4' },
+              { key: 'total', microName: 'Grand Total', editableTotal: false, fixedValue: false, value: '', microType: 'number', microClass: 'col-md-4' }
+            ]
+          },
+          {
+            componentName: 'routingButton', componentTitle: 'button', componentClass: 'col-md-12', componentMicro: [
+              { key: 'back', microName: 'Kembali', microRouting: 'back', microText: 'Kembali', microClass: 'btn-light' },
+              { key: 'submit', microName: '', microRouting: 'add', microText: '', microClass: 'btn-primary' }
+            ]
+          },
+        ]
+      }
+    ],
+  },  
+  {
+    transTitle: 'Sales Order ',
+    transRouting: 'sales-order-edit',
+    transProperties: [
+      {
+        dataName: 'menuEdit', dataMicro: [
+          {
+            componentName: 'fieldHeader', componentTitle: '', componentClass: 'col-md-6', componentMicro: [
+              { key: 'orderNumber', microName: 'Order Number', microType: 'text', microText: 'Masukan order number', microClass: '', value:'' },
+              { key: 'orderDate', microName: 'Order Date', microType: 'date', microText: 'Masukan tanggal order', microClass: '', value:'' },
+              { key: 'sales', microName: 'Nama Sales', microType: 'text', microText: 'Masukan Nama Sales', microClass: '', value:'' },
+            ]
+          },
+          {
+            componentName: 'fieldHeader', componentTitle: '', componentClass: 'col-md-6', componentMicro: [
+              { key: 'customer', microName: 'Customer', microType: 'text', microText: 'Masukan Nama Customer', microClass: '', value:'' },
+              { key: 'shipTo', microName: 'Ship to', microType: 'text', microText: 'Masukan Ship to', microClass: '', value:'' },
+              { key: 'shipPlan', microName: 'Shipment plan', microType: 'date', microText: 'Masukan tanggal order', microClass: '', value:'' },
+            ]
+          },
+          {
+            componentName: 'fieldTable', componentTitle: '', componentClass: 'col-md-12', componentMicro: [
+              { key: 'productCode', microName: 'Kode Produk', microType: 'text', width: 100, microText: 'Masukan Kode', microFormat: 'DD-MM-YYYY', microClass: '', },
+              { key: 'productName', microName: 'Nama Produk', microType: 'text', width: 0, microText: 'Masukan Nama', microClass: '', },
+              { key: 'desc', microName: 'Deskripsi', microType: 'text', width: 0, microText: 'Masukan Spesifikasi', microClass: '', },
+              { key: 'tableUoM', microName: 'UoM', microType: 'text', width: 0, microText: 'Masukan Quantity', microClass: '', },
+              { key: 'tableQty', microName: 'Qty', microType: 'numeric', width: 0, microText: 'Masukan Quantity', microClass: '', },
+              { key: 'tablePriceCode', microName: 'Price Code', microType: 'text', width: 0, microText: 'Masukan Quantity', microClass: '', },
+              { key: 'tablePrice', microName: 'Harga', microType: 'numeric', width: 100, microText: 'Masukan Nama', microClass: '', },
+              { key: 'tableTotal', microName: 'Total', microType: 'numeric', width: 0, microText: 'Masukan Unit', microClass: '', },
+            ]
+          },
+          {
+            componentName: 'fieldNote', componentTitle: 'Catatan', componentClass: 'col-md-12', componentMicro: [
+              { key: 'note', microName: 'Note', microType: 'textarea', microText: 'Masukan Catatan Tambahan', microClass: '', value:'' }
+            ]
+          },
+          {
+            componentName: 'fieldTotal', componentTitle: 'Total', componentClass: 'col-md-12', componentMicro: [
+              { key: 'tableTotal', microName: 'Sub Total', value: 0, editableTotal: false, microType: 'number', microMath: 'plus', microClass: 'col-md-4' },
+              { key: 'diskon', microName: 'Diskon (%)', value: '', editableTotal: true, microType: 'number', microMath: 'percent-minus', microClass: 'col-md-4' },
+              { key: 'ppn', microName: 'PPn (%)', value: '', editableTotal: false, microType: 'number', microMath: 'percent-plus', microClass: 'col-md-4' },
+              { key: 'total', microName: 'Grand Total', editableTotal: false, value: '', microType: 'number', microClass: 'col-md-4' }
+            ]
+          },
+          {
+            componentName: 'routingButton', componentTitle: 'button', componentClass: 'col-md-12', componentMicro: [
+              { key: 'back', microName: 'Kembali', microRouting: 'back', microText: 'Kembali', microClass: 'btn-light' },
+              { key: 'submit', microName: '', microRouting: 'add', microText: '', microClass: 'btn-primary' }
+            ]
+          },
+        ]
+      }
+    ],
+  }, 
+  // Work Order
+  {
+    transTitle: 'Work Order',
+    transRouting: 'wip-workorder',
+    transProperties: [
+      {
+        dataName: 'menuList', dataMicro: [
+          { key: 'woNo', microName: 'WO Number', microType: 'text', width: 100, microText: '', microFormat: '', microClass: '' },
+          { key: 'woNoBatch', microName: 'No. Batch', microType: 'text', width: 100, microText: '', microFormat: '', microClass: '' },
+          { key: 'woItemName', microName: 'Nama Produk', microType: 'text', width: 0, microText: '', microFormat: '', microClass: '' },
+          { key: 'woItemQty', microName: 'Quantity', microType: 'numeric', width: 0, microText: '', microFormat: '', microClass: '' },
+          { key: 'woItemUm', microName: 'UoM', microType: 'text', width: 0, microText: '', microFormat: '', microClass: '' },
+          { key: 'woScheduleDate', microName: 'Schedule Date', microType: 'date', width: 0, microText: '', microFormat: 'DD-MM-YYYY', microClass: '' },
+          { key: 'woStartDate', microName: 'Start Date', microType: 'date', width: 0, microText: '', microFormat: 'DD-MM-YYYY', microClass: '' },
+          // { key: 'operation', microName: 'Operation', microType: 'text', width: 0, microText: '', microFormat: '', microClass: '' },
+          { key: 'Created', microName: 'Status', microType: 'text', width: 0, microText: '', microFormat: '', microClass: '' },
+          { key: 'opsi', microName: '', microType: 'dropdown', width: 0, microText: '', microFormat: '', microClass: '' },
+        ]
+      },
+      {
+        dataName: 'routingButton', dataTitle: 'button', dataClass: 'col-md-12', dataMicro: [
+          { key: 'add', microName: '', microRouting: 'add', microText: '', microClass: 'btn-primary' }
+        ]
+      }
+    ],
+    transData: [
+      {
+        key: '001',
+        header: [
+          { key: 'H001', woNumber: 'WO0001', noBatch: 'BTC001', productName: 'Mie Gelas', productQty: 10, scheduleDate: '2023-12-01', startDate: '2023-12-01', operation: '-', status: 'complete' }
+        ],
+        table: [
+          { itemCode: 'MIE001', itemName: 'Mie Gelas', desc: '-', uom: 'pcs', qty: 10, status: 'complete' }
+        ],
+        footer: [
+          { note: 'Nggak Ada'}
+        ]
+      },
+      {
+        key: '001',
+        header: [
+          { key: 'H001', woNumber: 'WO0001', noBatch: 'BTC001', productName: 'Mie Gelas', productQty: 10, scheduleDate: '2023-12-01', startDate: '2023-12-01', operation: '-', status: 'complete' }
+        ],
+        table: [
+          { itemCode: 'MIE001', itemName: 'Mie Gelas', desc: '-', uom: 'pcs', qty: 10, status: 'complete' }
+        ],
+        footer: [
+          { note: 'Nggak Ada'}
+        ]
+      },
+      {
+        key: '001',
+        header: [
+          { key: 'H001', woNumber: 'WO0001', noBatch: 'BTC001', productName: 'Mie Gelas', productQty: 10, scheduleDate: '2023-12-01', startDate: '2023-12-01', operation: '-', status: 'complete' }
+        ],
+        table: [
+          { itemCode: 'MIE001', itemName: 'Mie Gelas', desc: '-', uom: 'pcs', qty: 10, status: 'complete' }
+        ],
+        footer: [
+          { note: 'Nggak Ada'}
+        ]
+      },
+      {
+        key: '001',
+        header: [
+          { key: 'H001', woNumber: 'WO0001', noBatch: 'BTC001', productName: 'Mie Gelas', productQty: 10, scheduleDate: '2023-12-01', startDate: '2023-12-01', operation: '-', status: 'complete' }
+        ],
+        table: [
+          { itemCode: 'MIE001', itemName: 'Mie Gelas', desc: '-', uom: 'pcs', qty: 10, status: 'complete' }
+        ],
+        footer: [
+          { note: 'Nggak Ada'}
+        ]
+      },
+      {
+        key: '001',
+        header: [
+          { key: 'H001', woNumber: 'WO0001', noBatch: 'BTC001', productName: 'Mie Gelas', productQty: 10, scheduleDate: '2023-12-01', startDate: '2023-12-01', operation: '-', status: 'complete' }
+        ],
+        table: [
+          { itemCode: 'MIE001', itemName: 'Mie Gelas', desc: '-', uom: 'pcs', qty: 10, status: 'complete' }
+        ],
+        footer: [
+          { note: 'Nggak Ada'}
+        ]
+      },
+    ]
+  },
+  {
+    transTitle: 'Work Order',
+    transRouting: 'wip-workorder-add',
+    transProperties: [
+      {
+        dataName: 'menuAdd', dataMicro: [
+          {
+            componentName: 'fieldHeader', componentTitle: '', componentClass: 'col-md-6', componentMicro: [
+              { key: 'productName', microName: 'Nama Produk', microType: 'multiselect', microOptions: [], microText: 'Masukan nama produk', isDisabled: false, microClass: '', microValue:'' },
+              { key: 'noBatch', microName: 'No. Batch', microType: 'text', microText: 'Masukan nomor batch', isDisabled: false, microClass: '', microValue:'' },
+              { key: 'StockProduk', microName: 'Stock Produk', microType: 'text', microText: '0', isDisabled: true, microClass: 'col-6', microValue:'' },
+              { key: 'minQtyProduk', microName: 'Minimal Produksi', microType: 'text', microText: '0', isDisabled: true, microClass: 'col-6', microValue:'' },
+            ]
+          },
+          {
+            componentName: 'fieldHeader', componentTitle: '', componentClass: 'col-md-6', componentMicro: [
+              { key: 'scheduleDate', microName: 'Schedule Date', microType: 'date', microText: 'YYYY-MM-DD', isDisabled: false, microClass: '', microValue:'', microFormat: 'DD/MM/YYYY'},
+              { key: 'productQty', microName: 'Kuantitas', microType: 'number', microText: 'Masukan kuantitas', isDisabled: false, microClass: '', microValue:'', microFormat: 'DD/MM/YYYY'},
+              { key: 'startDate', microName: 'Start Date', microType: 'date', microText: '', isDisabled: true, microClass: '', microValue:'' },
+            ]
+          },
+          {
+            componentName: 'fieldTable', componentTitle: '', componentClass: 'col-md-12', componentMicro: [
+              { key: 'itemCode', microName: 'Kode Item', microType: 'text', width: 100, microText: '', microClass: ''},
+              { key: 'itemName', microName: 'Nama Item', microType: 'text', width: 0, microText: '', microClass: ''},
+              { key: 'desc', microName: 'Deskripsi', microType: 'text', width: 0, microText: '', microClass: ''},
+              { key: 'qty', microName: 'Qty', microType: 'numeric', width: 0, microText: '', microClass: ''},
+              { key: 'uom', microName: 'UoM', microType: 'text', width:100, microText: '', microClass: ''},
+            ]
+          },
+          {
+            componentName: 'fieldNote', componentTitle: 'Catatan', componentClass: 'col-md-12', componentMicro: [
+              { key: 'note', microName: 'Note', microType: 'textarea', microText: 'Masukan Catatan Tambahan', microClass: '', microValue:'' }
+            ]
+          },
+          {
+            componentName: 'fieldTotal', componentTitle: 'Total', componentClass: 'col-md-12', componentMicro: []
+          },
+          {
+            componentName: 'routingButton', componentTitle: 'button', componentClass: 'col-md-12', componentMicro: [
+              { key: 'back', microName: 'Kembali', microRouting: 'back', microText: 'Kembali', microClass: 'btn-light' },
+              { key: 'submit', microName: '', microRouting: 'add', microText: '', microClass: 'btn-primary' }
+            ]
+          },
+        ]
+      },
+      {
+        dataName: 'routingButton', dataTitle: 'button', dataClass: 'col-md-12', dataMicro: [
+          { key: 'add', microName: '', microRouting: 'add', microText: '', microClass: 'btn-primary' }
+        ]
+      }
+    ]
+  },
+  {
+    transTitle: 'Work Order',
+    transRouting: 'wip-workorder-detail',
+    transProperties: [
+      {
+        dataName: 'menuAdd', dataMicro: [
+          {
+            componentName: 'fieldHeader', componentTitle: '', componentClass: 'col-md-6', componentMicro: [
+              { key: 'woNo', microName: 'No. WO', microType: 'text', microText: 'Nomor WO', isDisabled: true, microClass: 'col-6', microValue:'' },
+              { key: "woNoBatch", microName: 'No. Batch', microType: 'text', microText: 'Nomor batch', isDisabled: true, microClass: 'col-6', microValue:'' },
+              { key: 'woItemName', microName: 'Nama Produk', microType: 'text', microOptions: [], microText: 'Masukan nama produk', isDisabled: true, microClass: '', microValue:'' },
+            ]
+          },
+          {
+            componentName: 'fieldHeader', componentTitle: '', componentClass: 'col-md-6', componentMicro: [
+              { key: 'woScheduleDate', microName: 'Schedule', microType: 'date', microText: '', isDisabled: true, microClass: 'col-6', microValue:'', microFormat: 'DD/MM/YYYY'},
+              { key: 'woStartDate', microName: 'Start', microType: 'date', microText: '', isDisabled: true, microClass: 'col-6', microValue:'', microFormat: 'DD/MM/YYYY' },
+              { key: 'woItemQty', microName: 'Kuantitas', microType: 'number', microText: 'Masukan kuantitas', isDisabled: true, microClass: '', microValue:''},
+            ]
+          },
+          {
+            componentName: 'fieldTable', componentTitle: '', componentClass: 'col-md-12', componentMicro: [
+              { key: 'itemCode', microName: 'Kode Item', microType: 'text', width: 100, microText: '', microClass: ''},
+              { key: 'itemName', microName: 'Nama Item', microType: 'text', width: 0, microText: '', microClass: ''},
+              { key: 'desc', microName: 'Deskripsi', microType: 'text', width: 0, microText: '', microClass: ''},
+              { key: 'qty', microName: 'Qty', microType: 'numeric', width: 0, microText: '', microClass: ''},
+              { key: 'uom', microName: 'UoM', microType: 'text', width:100, microText: '', microClass: ''},
+            ]
+          },
+          {
+            componentName: 'fieldNote', componentTitle: 'Catatan', componentClass: 'col-md-12', componentMicro: [
+              { key: 'woNoted', microName: 'Note', microType: 'textarea', microText: 'Masukan Catatan Tambahan', microClass: '', microValue:'' }
+            ]
+          },
+          {
+            componentName: 'fieldTotal', componentTitle: 'Total', componentClass: 'col-md-12', componentMicro: []
+          },
+          {
+            componentName: 'routingButton', componentTitle: 'button', componentClass: 'col-md-12', componentMicro: [
+              { key: 'back', microName: 'Kembali', microRouting: 'back', microText: 'Kembali', microClass: 'btn-light' },
+              { key: 'submit', microName: '', microRouting: 'add', microText: '', microClass: 'btn-primary' }
+            ]
+          },
+        ]
+      },
+      {
+        dataName: 'routingButton', dataTitle: 'button', dataClass: 'col-md-12', dataMicro: [
+          { key: 'add', microName: '', microRouting: 'add', microText: '', microClass: 'btn-primary' }
+        ]
+      }
+    ]
+  },
+  {
+    transTitle: 'Work Order',
+    transRouting: 'wip-workorder-receipt',
+    transProperties: [
+      {
+        dataName: 'menuAdd', dataMicro: [
+          {
+            componentName: 'fieldHeader', componentTitle: '', componentClass: 'col-md-6', componentMicro: [
+              { key: 'woNo', microName: 'No. WO', microType: 'text', microText: 'Nomor WO', isDisabled: true, microClass: 'col-6', microValue:'' },
+              { key: "woNoBatch", microName: 'No. Batch', microType: 'text', microText: 'Nomor batch', isDisabled: true, microClass: 'col-6', microValue:'' },
+              { key: 'woItemName', microName: 'Nama Produk', microType: 'text', microOptions: [], microText: 'Masukan nama produk', isDisabled: true, microClass: '', microValue:'' },
+            ]
+          },
+          {
+            componentName: 'fieldHeader', componentTitle: '', componentClass: 'col-md-6', componentMicro: [
+              { key: 'woScheduleDate', microName: 'Schedule', microType: 'date', microText: '', isDisabled: true, microClass: 'col-6', microValue:'', microFormat: 'DD/MM/YYYY'},
+              { key: 'woStartDate', microName: 'Start', microType: 'date', microText: '', isDisabled: false, microClass: 'col-6', microValue:'', microFormat: 'DD/MM/YYYY' },
+              { key: 'woItemQty', microName: 'Kuantitas', microType: 'number', microText: 'Masukan kuantitas', isDisabled: true, microClass: '', microValue:''},
+            ]
+          },
+          {
+            componentName: 'fieldTable', componentTitle: '', componentClass: 'col-md-12', componentMicro: [
+              { key: 'itemCode', microName: 'Kode Item', microType: 'text', width: 100, microText: '', microClass: ''},
+              { key: 'itemName', microName: 'Nama Item', microType: 'text', width: 0, microText: '', microClass: ''},
+              { key: 'desc', microName: 'Deskripsi', microType: 'text', width: 0, microText: '', microClass: ''},
+              { key: 'qty', microName: 'Qty', microType: 'numeric', width: 0, microText: '', microClass: ''},
+              { key: 'uom', microName: 'UoM', microType: 'text', width:100, microText: '', microClass: ''},
+            ]
+          },
+          {
+            componentName: 'fieldNote', componentTitle: 'Catatan', componentClass: 'col-md-12', componentMicro: [
+              { key: 'woNoted', microName: 'Note', microType: 'textarea', microText: 'Masukan Catatan Tambahan', microClass: '', microValue:'' }
+            ]
+          },
+          {
+            componentName: 'fieldTotal', componentTitle: 'Total', componentClass: 'col-md-12', componentMicro: []
+          },
+          {
+            componentName: 'routingButton', componentTitle: 'button', componentClass: 'col-md-12', componentMicro: [
+              { key: 'back', microName: 'Kembali', microRouting: 'back', microText: 'Kembali', microClass: 'btn-light' },
+              { key: 'submit', microName: '', microRouting: 'add', microText: '', microClass: 'btn-primary' }
+            ]
+          },
+        ]
+      },
+      {
+        dataName: 'routingButton', dataTitle: 'button', dataClass: 'col-md-12', dataMicro: [
+          { key: 'add', microName: '', microRouting: 'add', microText: '', microClass: 'btn-primary' }
+        ]
+      }
+    ]
+  },
+  {
+    transTitle: 'Work Order',
+    transRouting: 'wip-workorder-edit',
+    transProperties: [
+      {
+        dataName: 'menuEdit', dataMicro: [
+          {
+            componentName: 'fieldHeader', componentTitle: '', componentClass: 'col-md-6', componentMicro: [
+              { key: 'noBatch', microName: 'No. Batch', microType: 'text', microText: 'Masukan nomor batch', microClass: '', microValue:'' },
+              { key: 'productName', microName: 'Nama Produk', microType: 'text', microText: 'Masukan nama produk', microClass: '', microValue:'' },
+              { key: 'productQty', microName: 'Kuantitas', microType: 'number', microText: 'Masukan kuantitas', microClass: '', microValue:'' },
+            ]
+          },
+          {
+            componentName: 'fieldHeader', componentTitle: '', componentClass: 'col-md-6', componentMicro: [
+              { key: 'scheduleDate', microName: 'Schedule Date', microType: 'date', microText: '', microClass: '', microValue:'' },
+              { key: 'startDate', microName: 'Start Date', microType: 'date', microText: '', microClass: '', microValue:'' },
+              { key: 'operation', microName: 'Operation', microType: 'text', microText: 'Masukan operasi', microClass: '', microValue:'' },
+            ]
+          },
+          {
+            componentName: 'fieldTable', componentTitle: '', componentClass: 'col-md-12', componentMicro: [
+              { key: 'itemCode', microName: 'Kode Item', microType: 'text', width: 100, microText: '', microClass: ''},
+              { key: 'itemName', microName: 'Nama Item', microType: 'text', width: 0, microText: '', microClass: ''},
+              { key: 'desc', microName: 'Deskripsi', microType: 'text', width: 0, microText: '', microClass: ''},
+              { key: 'qty', microName: 'Qty', microType: 'numeric', width: 0, microText: '', microClass: ''},
+              { key: 'uom', microName: 'UoM', microType: 'text', width:100, microText: '', microClass: ''},
+              { key: 'status', microName: 'Status', microType: 'text', width: 100, microText: '', microClass: ''},
+            ]
+          },
+          {
+            componentName: 'fieldNote', componentTitle: 'Catat  an', componentClass: 'col-md-12', componentMicro: [
+              { key: 'note', microName: 'Note', microType: 'textarea', microText: 'Masukan Catatan Tambahan', microClass: '', microValue:'' }
+            ]
+          },
+          {
+            componentName: 'fieldTotal', componentTitle: 'Total', componentClass: 'col-md-12', componentMicro: []
+          },
+          {
+            componentName: 'routingButton', componentTitle: 'button', componentClass: 'col-md-12', componentMicro: [
+              { key: 'back', microName: 'Kembali', microRouting: 'back', microText: 'Kembali', microClass: 'btn-light' },
+              { key: 'submit', microName: '', microRouting: 'add', microText: '', microClass: 'btn-primary' }
+            ]
+          },
+        ]
+      },
+      {
+        dataName: 'routingButton', dataTitle: 'button', dataClass: 'col-md-12', dataMicro: [
+          { key: 'add', microName: '', microRouting: 'add', microText: '', microClass: 'btn-primary' }
+        ]
+      }
+    ]
+  },
+  // Bill of Material
+  {
+    transTitle: 'Bill of Material',
+    transRouting: 'bill-of-material',
+    transProperties: [
+      {
+        dataName: 'menuList', dataMicro: [
+          { key: 'bomNumber', microName: 'BOM Number', microType: 'text', width: 100, microText: '', microFormat: '', microClass: '' },
+          { key: 'noBatch', microName: 'No. Batch', microType: 'text', width: 100, microText: '', microFormat: '', microClass: '' },
+          { key: 'productName', microName: 'Nama Produk', microType: 'text', width: 0, microText: '', microFormat: '', microClass: '' },
+          { key: 'createDate', microName: 'Create Date', microType: 'date', width: 0, microText: '', microFormat: 'DD-MM-YYYY', microClass: '' },
+          { key: 'reference', microName: 'Reference', microType: 'text', width: 0, microText: '', microFormat: '', microClass: '' },
+          { key: 'status', microName: 'Status', microType: 'text', width: 100, microText: '', microFormat: '', microClass: '' },
+          { key: 'opsi', microName: '', microType: 'dropdown', width: 0, microText: '', microFormat: '', microClass: '' },
+        ]
+      },
+      {
+        dataName: 'routingButton', dataTitle: 'button', dataClass: 'col-md-12', dataMicro: [
+          { key: 'add', microName: '', microRouting: 'add', microText: '', microClass: 'btn-primary' }
+        ]
+      }
+    ],
+    transData: [
+      {
+        key: '001',
+        header: [
+          { key: 'H001', bomNumber: 'BOM0001', noBatch: 'NB0001', productName: 'Kardus', createDate: '2023-12-01', scheduleDate: '2023-12-01', sales: 'Mamat', reference: '-', status: 'complete' }
+        ],
+        table: [
+          { itemCode: 'MIE001', itemName: 'Mie Gelas', desc: '-', sendDate: '2023-12-01', qtyRequest: 10, uomRequest: 'pcs', qtySend: 10, uomSend: 'pcs', status: 'completed' }
+        ],
+        footer: [
+          { note: 'Nggak Ada' }
+        ]
+      },
+      {
+        key: '001',
+        header: [
+          { key: 'H001', bomNumber: 'BOM0001', noBatch: 'NB0001', productName: 'Kardus', createDate: '2023-12-01', scheduleDate: '2023-12-01', sales: 'Mamat', reference: '-', status: 'complete' }
+        ],
+        table: [
+          { itemCode: 'MIE001', itemName: 'Mie Gelas', sendDate: '2023-12-01', qtyRequest: 10, uomRequest: 'pcs', qtySend: 10, uomSend: 'pcs', status: 'completed' }
+        ],
+        footer: [
+          { note: 'Nggak Ada' }
+        ]
+      },
+      {
+        key: '001',
+        header: [
+          { key: 'H001', bomNumber: 'BOM0001', noBatch: 'NB0001', productName: 'Kardus', createDate: '2023-12-01', scheduleDate: '2023-12-01', sales: 'Mamat', reference: '-', status: 'complete' }
+        ],
+        table: [
+          { itemCode: 'MIE001', itemName: 'Mie Gelas', sendDate: '2023-12-01', qtyRequest: 10, uomRequest: 'pcs', qtySend: 10, uomSend: 'pcs', status: 'completed' }
+        ],
+        footer: [
+          { note: 'Nggak Ada' }
+        ]
+      },
+      {
+        key: '001',
+        header: [
+          { key: 'H001', bomNumber: 'BOM0001', noBatch: 'NB0001', productName: 'Kardus', createDate: '2023-12-01', scheduleDate: '2023-12-01', sales: 'Mamat', reference: '-', status: 'complete' }
+        ],
+        table: [
+          { itemCode: 'MIE001', itemName: 'Mie Gelas', sendDate: '2023-12-01', qtyRequest: 10, uomRequest: 'pcs', qtySend: 10, uomSend: 'pcs', status: 'completed' }
+        ],
+        footer: [
+          { note: 'Nggak Ada' }
+        ]
+      },
+      {
+        key: '001',
+        header: [
+          { key: 'H001', bomNumber: 'BOM0001', noBatch: 'NB0001', productName: 'Kardus', createDate: '2023-12-01', scheduleDate: '2023-12-01', sales: 'Mamat', reference: '-', status: 'complete' }
+        ],
+        table: [
+          { itemCode: 'MIE001', itemName: 'Mie Gelas', sendDate: '2023-12-01', qtyRequest: 10, uomRequest: 'pcs', qtySend: 10, uomSend: 'pcs', status: 'completed' }
+        ],
+        footer: [
+          { note: 'Nggak Ada' }
+        ]
+      },
+    ]
+  },
+  {
+    transTitle: 'Bill of Material',
+    transRouting: 'bill-of-material-add',
+    transProperties: [
+      {
+        dataName: 'menuAdd', dataMicro: [
+          {
+            componentName: 'fieldHeader', componentTitle: '', componentClass: 'col-md-6', componentMicro: [
+              {key: 'user', microName: 'No. Batch', microType: 'numeric', microText: 'Masukan nomor batch', microClass: ''},
+              {key:'journal', microName: 'Nama Produk', microType: 'text', microText: 'Masukan nama produk', microClass: ''},
+            ]
+          },
+          {
+            componentName: 'fieldHeader', componentTitle: '', componentClass: 'col-md-6', componentMicro: [
+              {key: 'date', microName: 'Create Date', microType: 'date', microText: 'Masukan tanggal', microClass: ''},
+              {key: 'date', microName: 'Schedule Date', microType: 'date', microText: 'Masukan tanggal', microClass: ''},
+              {key:'journal', microName: 'Reference', microType: 'text', microText: 'Masukan referensi', microClass: ''},
+            ]
+          },
+          {
+            componentName: 'fieldTable', componentTitle: '', componentClass: 'col-md-12', componentMicro: [
+              { key: 'itemCode', microName: 'Kode Item', microType: 'text', width: 100, microText: 'Masukan Kode', microClass: '', },
+              { key: 'itemName', microName: 'Nama Item', microType: 'text', width: 0, microText: 'Masukan Nama', microClass: '', },
+              { key: 'desc', microName: 'Deskripsi', microType: 'text', width: 0, microText: 'Masukan Spesifikasi', microClass: '', },
+              { key: 'sendDate', microName: 'Send Date', microType: 'date', width: 0, microText: 'Masukan Quantity', microClass: '', },
+              { key: 'qtyRequest', microName: 'Qty (Request)', microType: 'numeric', width: 0, microText: 'Masukan Quantity', microClass: '', },
+              { key: 'uomRequest', microName: 'UoM (Request)', microType: 'text', width: 0, microText: 'Masukan Quantity', microClass: '', },
+              { key: 'qtySend', microName: 'Qty (Send)', microType: 'numeric', width: 0, microText: 'Masukan Quantity', microClass: '', },
+              { key: 'uomSend', microName: 'UoM (Send)', microType: 'text', width: 0, microText: 'Masukan Quantity', microClass: '', },
+              { key: 'status', microName: 'Status', microType: 'text', width: 0, microText: 'Masukan Quantity', microClass: '', },
+            ]
+          },
+          {
+            componentName: 'fieldNote', componentTitle: 'Catatan', componentClass: 'col-md-12', componentMicro: [
+              { key: 'note', microName: 'Note', microType: 'textarea', microText: 'Masukan Catatan Tambahan', microClass: '', microValue:'' }
+            ]
+          },
+          {
+            componentName: 'fieldTotal', componentTitle: 'Total', componentClass: 'col-md-12', componentMicro: [
+              { key: 'qtyRequest', microName: 'Total Qty (Request)', value: '', editableTotal: false, microType: 'number', microMath: 'plus', microClass: 'col-md-4' },
+              { key: 'qtySend', microName: 'Total Qty (send)', value: '', editableTotal: false, microType: 'number', microMath: 'minus', microClass: 'col-md-4' },
+              { key: 'total', microName: 'Grand Total', editableTotal: false, value: '', microType: 'number', microClass: 'col-md-4 d-none' }
+            ]
+          },
+          {
+            componentName: 'routingButton', componentTitle: 'button', componentClass: 'col-md-12', componentMicro: [
+              { key: 'back', microName: 'Kembali', microRouting: 'back', microText: 'Kembali', microClass: 'btn-light' },
+              { key: 'submit', microName: '', microRouting: 'add', microText: '', microClass: 'btn-primary' }
+            ]
+          },
+        ]
+      }
+    ],
+  },
+  {
+    transTitle: 'Bill of Material',
+    transRouting: 'bill-of-material-detail',
+    transProperties: [
+      {
+        dataName: 'menuDetail', dataMicro: [
+          {
+            componentName: 'fieldHeader', componentTitle: '', componentClass: 'col-md-6', componentMicro: [
+              {key: 'user', microName: 'No. Batch', microType: 'numeric', microText: 'Masukan nomor batch', microClass: ''},
+              {key:'journal', microName: 'Nama Produk', microType: 'text', microText: 'Masukan nama produk', microClass: ''},
+            ]
+          },
+          {
+            componentName: 'fieldHeader', componentTitle: '', componentClass: 'col-md-6', componentMicro: [
+              {key: 'date', microName: 'Create Date', microType: 'date', microText: 'Masukan tanggal', microClass: ''},
+              {key: 'date', microName: 'Schedule Date', microType: 'date', microText: 'Masukan tanggal', microClass: ''},
+              {key:'journal', microName: 'Reference', microType: 'text', microText: 'Masukan referensi', microClass: ''},
+            ]
+          },
+          {
+            componentName: 'fieldTable', componentTitle: '', componentClass: 'col-md-12', componentMicro: [
+              { key: 'itemCode', microName: 'Kode Item', microType: 'text', width: 100, microText: 'Masukan Kode', microClass: '', },
+              { key: 'itemName', microName: 'Nama Item', microType: 'text', width: 0, microText: 'Masukan Nama', microClass: '', },
+              { key: 'desc', microName: 'Deskripsi', microType: 'text', width: 0, microText: 'Masukan Spesifikasi', microClass: '', },
+              { key: 'sendDate', microName: 'Send Date', microType: 'date', width: 0, microText: 'Masukan Quantity', microClass: '', },
+              { key: 'qtyRequest', microName: 'Qty (Request)', microType: 'numeric', width: 0, microText: 'Masukan Quantity', microClass: '', },
+              { key: 'uomRequest', microName: 'UoM (Request)', microType: 'text', width: 0, microText: 'Masukan Quantity', microClass: '', },
+              { key: 'qtySend', microName: 'Qty (Send)', microType: 'numeric', width: 0, microText: 'Masukan Quantity', microClass: '', },
+              { key: 'uomSend', microName: 'UoM (Send)', microType: 'text', width: 0, microText: 'Masukan Quantity', microClass: '', },
+              { key: 'status', microName: 'Status', microType: 'text', width: 0, microText: 'Masukan Quantity', microClass: '', },
+            ]
+          },
+          {
+            componentName: 'fieldNote', componentTitle: 'Catatan', componentClass: 'col-md-12', componentMicro: [
+              { key: 'note', microName: 'Note', microType: 'textarea', microText: 'Masukan Catatan Tambahan', microClass: '', microValue:'' }
+            ]
+          },
+          {
+            componentName: 'fieldTotal', componentTitle: 'Total', componentClass: 'col-md-12', componentMicro: [
+              { key: 'qtyRequest', microName: 'Total Qty (Request)', value: '', editableTotal: false, microType: 'number', microMath: 'plus', microClass: 'col-md-4' },
+              { key: 'qtySend', microName: 'Total Qty (send)', value: '', editableTotal: false, microType: 'number', microMath: 'minus', microClass: 'col-md-4' },
+              { key: 'total', microName: 'Grand Total', editableTotal: false, value: '', microType: 'number', microClass: 'col-md-4 d-none' }
+            ]
+          },
+          {
+            componentName: 'routingButton', componentTitle: 'button', componentClass: 'col-md-12', componentMicro: [
+              { key: 'back', microName: 'Kembali', microRouting: 'back', microText: 'Kembali', microClass: 'btn-light' },
+              { key: 'submit', microName: '', microRouting: 'add', microText: '', microClass: 'btn-primary' }
+            ]
+          },
+        ]
+      }
+    ],
+  },
+  {
+    transTitle: 'Bill of Material',
+    transRouting: 'bill-of-material-edit',
+    transProperties: [
+      {
+        dataName: 'menuEdit', dataMicro: [
+          {
+            componentName: 'fieldHeader', componentTitle: '', componentClass: 'col-md-6', componentMicro: [
+              {key: 'user', microName: 'No. Batch', microType: 'numeric', microText: 'Masukan nomor batch', microClass: ''},
+              {key:'journal', microName: 'Nama Produk', microType: 'text', microText: 'Masukan nama produk', microClass: ''},
+            ]
+          },
+          {
+            componentName: 'fieldHeader', componentTitle: '', componentClass: 'col-md-6', componentMicro: [
+              {key: 'date', microName: 'Create Date', microType: 'date', microText: 'Masukan tanggal', microClass: ''},
+              {key: 'date', microName: 'Schedule Date', microType: 'date', microText: 'Masukan tanggal', microClass: ''},
+              {key:'journal', microName: 'Reference', microType: 'text', microText: 'Masukan referensi', microClass: ''},
+            ]
+          },
+          {
+            componentName: 'fieldTable', componentTitle: '', componentClass: 'col-md-12', componentMicro: [
+              { key: 'itemCode', microName: 'Kode Item', microType: 'text', width: 100, microText: 'Masukan Kode', microClass: '', },
+              { key: 'itemName', microName: 'Nama Item', microType: 'text', width: 0, microText: 'Masukan Nama', microClass: '', },
+              { key: 'desc', microName: 'Deskripsi', microType: 'text', width: 0, microText: 'Masukan Spesifikasi', microClass: '', },
+              { key: 'sendDate', microName: 'Send Date', microType: 'date', width: 0, microText: 'Masukan Quantity', microClass: '', },
+              { key: 'qtyRequest', microName: 'Qty (Request)', microType: 'numeric', width: 0, microText: 'Masukan Quantity', microClass: '', },
+              { key: 'uomRequest', microName: 'UoM (Request)', microType: 'text', width: 0, microText: 'Masukan Quantity', microClass: '', },
+              { key: 'qtySend', microName: 'Qty (Send)', microType: 'numeric', width: 0, microText: 'Masukan Quantity', microClass: '', },
+              { key: 'uomSend', microName: 'UoM (Send)', microType: 'text', width: 0, microText: 'Masukan Quantity', microClass: '', },
+              { key: 'status', microName: 'Status', microType: 'text', width: 0, microText: 'Masukan Quantity', microClass: '', },
+            ]
+          },
+          {
+            componentName: 'fieldNote', componentTitle: 'Catatan', componentClass: 'col-md-12', componentMicro: [
+              { key: 'note', microName: 'Note', microType: 'textarea', microText: 'Masukan Catatan Tambahan', microClass: '', microValue:'' }
+            ]
+          },
+          {
+            componentName: 'fieldTotal', componentTitle: 'Total', componentClass: 'col-md-12', componentMicro: [
+              { key: 'qtyRequest', microName: 'Total Qty (Request)', value: '', editableTotal: false, microType: 'number', microMath: 'plus', microClass: 'col-md-4' },
+              { key: 'qtySend', microName: 'Total Qty (send)', value: '', editableTotal: false, microType: 'number', microMath: 'minus', microClass: 'col-md-4' },
+              { key: 'total', microName: 'Grand Total', editableTotal: false, value: '', microType: 'number', microClass: 'col-md-4 d-none' }
+            ]
+          },
+          {
+            componentName: 'routingButton', componentTitle: 'button', componentClass: 'col-md-12', componentMicro: [
+              { key: 'back', microName: 'Kembali', microRouting: 'back', microText: 'Kembali', microClass: 'btn-light' },
+              { key: 'submit', microName: '', microRouting: 'add', microText: '', microClass: 'btn-primary' }
+            ]
+          },
+        ]
+      }
+    ],
+  },
+  // Production Report
+  {
+    transTitle: 'Production Report',
+    transRouting: 'production-report',
+    transProperties: [
+      {
+        dataName: 'menuList', dataMicro: [
+          { key: 'prNumber', microName: 'PR Number', microType: 'text', width: 0, microText: '', microFormat: '', microClass: '' },
+          { key: 'noBatch', microName: 'No. Batch', microType: 'text', width: 0, microText: '', microFormat: '', microClass: '' },
+          { key: 'createDate', microName: 'Create Date', microType: 'date', width: 0, microText: '', microFormat: 'DD-MM-YYYY', microClass: '' },
+          { key: 'scheduleDate', microName: 'Schedule Date', microType: 'date', width: 0, microText: '', microFormat: 'DD-MM-YYYY', microClass: '' },
+          { key: 'status', microName: 'Status', microType: 'text', width: 100, microText: '', microFormat: '', microClass: '' },
+          { key: 'opsi', microName: '', microType: 'dropdown', width: 0, microText: '', microFormat: '', microClass: '' },
+        ]
+      },
+      {
+        dataName: 'routingButton', dataTitle: 'button', dataClass: 'col-md-12', dataMicro: [
+          { key: 'add', microName: '', microRouting: 'add', microText: '', microClass: 'btn-primary' }
+        ]
+      }
+    ],
+    transData: [
+      {
+        key: '001',
+        header: [
+          { key: 'H001', prNumber: 'WO0001', noBatch: 'BTC001', productQty: 10, createDate: '2023-12-01', scheduleDate: '2023-12-01', status: 'completed' }
+        ],
+        table: [
+          { operation: 'Pembuatan Mie Gelas', workCenter: 'Nggak Tahu', namaProduk: 'Mie Gelas', realDuration: 'pcs', qtyResult: 10, status: 'computed' }
+        ],
+        footer: [
+          { note: 'Nggak Ada'}
+        ]
+      },
+    ]
+  },
+  {
+    transTitle: 'Production Report',
+    transRouting: 'production-report-add',
+    transProperties: [
+      {
+        dataName: 'menuAdd', dataMicro: [
+          {
+            componentName: 'fieldHeader', componentTitle: '', componentClass: 'col-md-6', componentMicro: [
+              { key: 'noBatch', microName: 'No. Batch', microType: 'text', microText: 'Masukan nomor batch', microClass: '', microValue:'' },
+            ]
+          },
+          {
+            componentName: 'fieldHeader', componentTitle: '', componentClass: 'col-md-6', componentMicro: [
+              { key: 'createDate', microName: 'Create Date', microType: 'date', microText: '', microClass: '', microValue:'' },
+              { key: 'scheduleDate', microName: 'Schedule Date', microType: 'date', microText: '', microClass: '', microValue:'' },
+            ]
+          },
+          {
+            componentName: 'fieldTable', componentTitle: '', componentClass: 'col-md-12', componentMicro: [
+              { key: 'operation', microName: 'Operation', microType: 'text', width: 0, microText: '', microClass: ''},
+              { key: 'workCenter', microName: 'Work Center', microType: 'text', width: 0, microText: '', microClass: ''},
+              { key: 'namaProduk', microName: 'Nama Produk', microType: 'text', width: 0, microText: '', microClass: ''},
+              { key: 'qtyResult', microName: 'Qty Result', microType: 'numeric', width: 0, microText: '', microClass: ''},
+              { key: 'realDuration', microName: 'Real Dration', microType: 'date', width:100, microText: '', microClass: ''},
+              { key: 'status', microName: 'Status', microType: 'text', width: 100, microText: '', microClass: ''},
+            ]
+          },
+          {
+            componentName: 'fieldNote', componentTitle: 'Catatan', componentClass: 'col-md-12', componentMicro: [
+              { key: 'note', microName: 'Note', microType: 'textarea', microText: 'Masukan Catatan Tambahan', microClass: '', microValue:'' }
+            ]
+          },
+          {
+            componentName: 'fieldTotal', componentTitle: 'Total', componentClass: 'col-md-12', componentMicro: []
+          },
+          {
+            componentName: 'routingButton', componentTitle: 'button', componentClass: 'col-md-12', componentMicro: [
+              { key: 'back', microName: 'Kembali', microRouting: 'back', microText: 'Kembali', microClass: 'btn-light' },
+              { key: 'submit', microName: '', microRouting: 'add', microText: '', microClass: 'btn-primary' }
+            ]
+          },
+        ]
+      },
+      {
+        dataName: 'routingButton', dataTitle: 'button', dataClass: 'col-md-12', dataMicro: [
+          { key: 'add', microName: '', microRouting: 'add', microText: '', microClass: 'btn-primary' }
+        ]
+      }
+    ]
+  },
+  {
+    transTitle: 'Production Report',
+    transRouting: 'production-report-detail',
+    transProperties: [
+      {
+        dataName: 'menuDetail', dataMicro: [
+          {
+            componentName: 'fieldHeader', componentTitle: '', componentClass: 'col-md-6', componentMicro: [
+              { key: 'noBatch', microName: 'No. Batch', microType: 'text', microText: 'Masukan nomor batch', microClass: '', microValue:'' },
+            ]
+          },
+          {
+            componentName: 'fieldHeader', componentTitle: '', componentClass: 'col-md-6', componentMicro: [
+              { key: 'createDate', microName: 'Create Date', microType: 'date', microText: '', microClass: '', microValue:'' },
+              { key: 'scheduleDate', microName: 'Schedule Date', microType: 'date', microText: '', microClass: '', microValue:'' },
+            ]
+          },
+          {
+            componentName: 'fieldTable', componentTitle: '', componentClass: 'col-md-12', componentMicro: [
+              { key: 'operation', microName: 'Operation', microType: 'text', width: 0, microText: '', microClass: ''},
+              { key: 'workCenter', microName: 'Work Center', microType: 'text', width: 0, microText: '', microClass: ''},
+              { key: 'namaProduk', microName: 'Nama Produk', microType: 'text', width: 0, microText: '', microClass: ''},
+              { key: 'qtyResult', microName: 'Qty Result', microType: 'numeric', width: 0, microText: '', microClass: ''},
+              { key: 'realDuration', microName: 'Real Dration', microType: 'date', width:100, microText: '', microClass: ''},
+              { key: 'status', microName: 'Status', microType: 'text', width: 100, microText: '', microClass: ''},
+            ]
+          },
+          {
+            componentName: 'fieldNote', componentTitle: 'Catatan', componentClass: 'col-md-12', componentMicro: [
+              { key: 'note', microName: 'Note', microType: 'textarea', microText: 'Masukan Catatan Tambahan', microClass: '', microValue:'' }
+            ]
+          },
+          {
+            componentName: 'fieldTotal', componentTitle: 'Total', componentClass: 'col-md-12', componentMicro: []
+          },
+          {
+            componentName: 'routingButton', componentTitle: 'button', componentClass: 'col-md-12', componentMicro: [
+              { key: 'back', microName: 'Kembali', microRouting: 'back', microText: 'Kembali', microClass: 'btn-light' },
+              { key: 'submit', microName: '', microRouting: 'add', microText: '', microClass: 'btn-primary' }
+            ]
+          },
+        ]
+      },
+      {
+        dataName: 'routingButton', dataTitle: 'button', dataClass: 'col-md-12', dataMicro: [
+          { key: 'add', microName: '', microRouting: 'add', microText: '', microClass: 'btn-primary' }
+        ]
+      }
+    ]
+  },
+  {
+    transTitle: 'Production Report',
+    transRouting: 'production-report-edit',
+    transProperties: [
+      {
+        dataName: 'menuEdit', dataMicro: [
+          {
+            componentName: 'fieldHeader', componentTitle: '', componentClass: 'col-md-6', componentMicro: [
+              { key: 'noBatch', microName: 'No. Batch', microType: 'text', microText: 'Masukan nomor batch', microClass: '', microValue:'' },
+            ]
+          },
+          {
+            componentName: 'fieldHeader', componentTitle: '', componentClass: 'col-md-6', componentMicro: [
+              { key: 'createDate', microName: 'Create Date', microType: 'date', microText: '', microClass: '', microValue:'' },
+              { key: 'scheduleDate', microName: 'Schedule Date', microType: 'date', microText: '', microClass: '', microValue:'' },
+            ]
+          },
+          {
+            componentName: 'fieldTable', componentTitle: '', componentClass: 'col-md-12', componentMicro: [
+              { key: 'operation', microName: 'Operation', microType: 'text', width: 0, microText: '', microClass: ''},
+              { key: 'workCenter', microName: 'Work Center', microType: 'text', width: 0, microText: '', microClass: ''},
+              { key: 'namaProduk', microName: 'Nama Produk', microType: 'text', width: 0, microText: '', microClass: ''},
+              { key: 'qtyResult', microName: 'Qty Result', microType: 'numeric', width: 0, microText: '', microClass: ''},
+              { key: 'realDuration', microName: 'Real Dration', microType: 'date', width:100, microText: '', microClass: ''},
+              { key: 'status', microName: 'Status', microType: 'text', width: 100, microText: '', microClass: ''},
+            ]
+          },
+          {
+            componentName: 'fieldNote', componentTitle: 'Catatan', componentClass: 'col-md-12', componentMicro: [
+              { key: 'note', microName: 'Note', microType: 'textarea', microText: 'Masukan Catatan Tambahan', microClass: '', microValue:'' }
+            ]
+          },
+          {
+            componentName: 'fieldTotal', componentTitle: 'Total', componentClass: 'col-md-12', componentMicro: []
+          },
+          {
+            componentName: 'routingButton', componentTitle: 'button', componentClass: 'col-md-12', componentMicro: [
+              { key: 'back', microName: 'Kembali', microRouting: 'back', microText: 'Kembali', microClass: 'btn-light' },
+              { key: 'submit', microName: '', microRouting: 'add', microText: '', microClass: 'btn-primary' }
+            ]
+          },
+        ]
+      },
+      {
+        dataName: 'routingButton', dataTitle: 'button', dataClass: 'col-md-12', dataMicro: [
+          { key: 'add', microName: '', microRouting: 'add', microText: '', microClass: 'btn-primary' }
+        ]
+      }
+    ]
+  },
+  // Shipment
+  {
+    transTitle: 'Shipment',
+    transRouting: 'shipment',
+    transProperties: [
+      {
+        dataName: 'menuList', dataMicro: [
+          { key: 'shipNumber', microName: 'Ship Number', microType: 'text', width: 110, microText: '', microFormat: '', microClass: '' },
+          { key: 'shipDate', microName: 'Ship Date', microType: 'date', width: 0, microText: '', microFormat: 'DD-MM-YYYY', microClass: '' },
+          { key: 'courier', microName: 'Nama Courier', microType: 'text', width: 0, microText: '', microFormat: '', microClass: '' },
+          { key: 'customer', microName: 'Customer', microType: 'text', width: 0, microText: '', microFormat: '', microClass: '' },
+          { key: 'shipTo', microName: 'Ship To', microType: 'text', width: 0, microText: '', microFormat: '', microClass: '' },
+          { key: 'status', microName: 'Status', microType: 'text', width: 0, microText: '', microFormat: '', microClass: '' },
+          { key: 'opsi', microName: '', microType: 'dropdown', width: 0, microText: '', microFormat: '', microClass: '' },
+        ]
+      },
+      {
+        dataName: 'routingButton', dataTitle: 'button', dataClass: 'col-md-12', dataMicro: [
+          { key: 'add', microName: '', microRouting: 'add', microText: '', microClass: 'btn-primary' }
+        ]
+      }
+    ],
+    transData: [
+      {
+        key: '001',
+        header: [
+          { key: 'H001', shipNumber: 'SO0001', shipDate: '2023-12-01', courier: 'Mamat', customer: 'Yamaaf', shipTo: '-', status: 'complete' }
+        ],
+        table: [
+          { soNumber: 'SO00001', productCode: 'MIE001', productName: 'Mie Gelas', noBatch: 'BTC0001', tableUoM: 'pcs', qty: 100, tableTotal: 10 }
+        ],
+        footer: [
+          { note: 'Nggak Ada', diskon: 10 }
+        ]
+      },
+    ]
+  },
+  {
+    transTitle: 'Shipment',
+    transRouting: 'shipment-add',
+    transProperties: [
+      {
+        dataName: 'menuAdd', dataMicro: [
+          {
+            componentName: 'fieldHeader', componentTitle: '', componentClass: 'col-md-6', componentMicro: [
+              { key: 'shipNumber', microName: 'Ship Number', microType: 'text', microText: 'Masukan shipment number', microClass: '', microValue:'' },
+              { key: 'shipDate', microName: 'Ship Date', microType: 'date', microText: 'Masukan tanggal order', microClass: '', microValue:'' },
+              { key: 'customer', microName: 'Customer', microType: 'multiselect', microOptions: [], microClass: '', microValue:'' },
+            ]
+          },
+          {
+            componentName: 'fieldHeader', componentTitle: '', componentClass: 'col-md-6', componentMicro: [
+              { key: 'namaEkpedisi', microName: 'Nama Ekspedisi', microType: 'text', microText: 'Masukan Nama Sales', microClass: '', microValue:'' },
+              { key: 'noResi', microName: 'No.Resi', microType: 'text', microText: 'Masukan Nomor Resi', microClass: 'col-6', microValue:'' },
+              { key: 'namaSupir', microName: 'Supir', microType: 'text', microText: 'Masukan Nama Supir', microClass: 'col-6', microValue:'' },
+              { key: 'tipeMobil', microName: 'Jenis Mobil', microType: 'text', microText: 'Masukan Jenis Mobil', microClass: 'col-6', microValue:'' },
+              { key: 'platNomor', microName: 'Plat Nomor', microType: 'text', microText: 'Masukan Plat Nomor', microClass: 'col-6', microValue:'' },
+            ]
+          },
+          {
+            componentName: 'fieldTable', componentTitle: '', componentClass: 'col-md-12', componentMicro: [
+              { key: 'soNumber', microName: '*Kode SO', microType: 'autocomplete', width: 135, microFormat: '', microClass: '', },
+              { key: 'productName', microName: '*Nama Produk', microType: 'autocomplete', width: 200, microClass: '', },
+              { key: 'noBatch', microName: '*No. Batch', microType: 'autocomplete', width: 125, microText: 'Masukan Spesifikasi', microClass: '', },
+              { key: 'qtyReq', microName: 'Qty. Req', microType: 'numeric', width: 50, microText: 'Masukan Quantity', microClass: '', },
+              { key: 'qtySend', microName: '*Qty. Send', microType: 'numeric', width: 50, microText: 'Masukan Quantity', microClass: '', },
+              { key: 'UoM', microName: 'UoM', microType: 'text', width: 0, microText: 'Masukan Unit', microClass: '', },
+              { key: 'shipTo', microName: '*Ship To', microType: 'autocomplete', width: 250, microText: 'Masukan Unit', microClass: '', },
+            ]
+          },
+          {
+            componentName: 'fieldNote', componentTitle: 'Catatan', componentClass: 'col-md-12', componentMicro: [
+              { key: 'note', microName: 'Note', microType: 'textarea', microText: 'Masukan Catatan Tambahan', microClass: '', microValue:'' }
+            ]
+          },
+          {
+            componentName: 'fieldTotal', componentTitle: 'Total', componentClass: 'col-md-12', componentMicro: [
+              { key: 'qty', microName: 'Total QTY', value: '', editableTotal: false, microType: 'number', microMath: '', microClass: 'col-md-4' },
+              { key: 'tableTotal', microName: 'Total Pack', value: '', editableTotal: false, microType: 'number', microMath: 'plus', microClass: 'col-md-4' },
+              { key: 'total', microName: 'Total Tonase', editableTotal: false, value: '', microType: 'number', microClass: 'col-md-4' }
+            ]
+          },
+          {
+            componentName: 'routingButton', componentTitle: 'button', componentClass: 'col-md-12', componentMicro: [
+              { key: 'back', microName: 'Kembali', microRouting: 'back', microText: 'Kembali', microClass: 'btn-light' },
+              { key: 'submit', microName: '', microRouting: 'add', microText: '', microClass: 'btn-primary' }
+            ]
+          },
+        ]
+      }
+    ],
+  },
+  {
+    transTitle: 'Shipment',
+    transRouting: 'shipment-detail',
+    transProperties: [
+      {
+        dataName: 'menuDetail', dataMicro: [
+          {
+            componentName: 'fieldHeader', componentTitle: '', componentClass: 'col-md-6', componentMicro: [
+              { key: 'shipNumber', microName: 'Ship Number', microType: 'text', microText: 'Masukan order number', microClass: '', microValue:'' },
+              { key: 'shipDate', microName: 'Ship Date', microType: 'date', microText: 'Masukan tanggal order', microClass: '', microValue:'' },
+              { key: 'courier', microName: 'Nama Courier', microType: 'text', microText: 'Masukan Nama Sales', microClass: '', microValue:'' },
+            ]
+          },
+          {
+            componentName: 'fieldHeader', componentTitle: '', componentClass: 'col-md-6', componentMicro: [
+              { key: 'customer', microName: 'Customer', microType: 'text', microText: 'Masukan Nama Customer', microClass: '', microValue:'' },
+              { key: 'shipTo', microName: 'Ship to', microType: 'text', microText: 'Masukan Ship to', microClass: '', microValue:'' },
+            ]
+          },
+          {
+            componentName: 'fieldTable', componentTitle: '', componentClass: 'col-md-12', componentMicro: [
+              { key: 'soNumber', microName: 'Nomor SO', microType: 'text', width: 100, microText: 'Masukan Kode', microFormat: '', microClass: '', },
+              { key: 'productCode', microName: 'Kode Produk', microType: 'text', width: 100, microText: 'Masukan Kode', microFormat: '', microClass: '', },
+              { key: 'productName', microName: 'Nama Produk', microType: 'text', width: 0, microText: 'Masukan Nama', microClass: '', },
+              { key: 'noBatch', microName: 'No. Batch', microType: 'text', width: 0, microText: 'Masukan Spesifikasi', microClass: '', },
+              { key: 'tableUoM', microName: 'UoM', microType: 'text', width: 0, microText: 'Masukan Quantity', microClass: '', },
+              { key: 'qty', microName: 'Qty', microType: 'numeric', width: 0, microText: 'Masukan Unit', microClass: '', },
+              { key: 'tableTotal', microName: 'Total Pack', microType: 'numeric', width: 0, microText: 'Masukan Unit', microClass: '', },
+            ]
+          },
+          {
+            componentName: 'fieldNote', componentTitle: 'Catatan', componentClass: 'col-md-12', componentMicro: [
+              { key: 'note', microName: 'Note', microType: 'textarea', microText: 'Masukan Catatan Tambahan', microClass: '', microValue:'' }
+            ]
+          },
+          {
+            componentName: 'fieldTotal', componentTitle: 'Total', componentClass: 'col-md-12', componentMicro: [
+              { key: 'qty', microName: 'Total QTY', value: '', editableTotal: false, microType: 'number', microMath: '', microClass: 'col-md-4' },
+              { key: 'tableTotal', microName: 'Total Pack', value: '', editableTotal: false, microType: 'number', microMath: 'plus', microClass: 'col-md-4' },
+              { key: 'total', microName: 'Total Tonase', editableTotal: false, value: '', microType: 'number', microClass: 'col-md-4' }
+            ]
+          },
+          {
+            componentName: 'routingButton', componentTitle: 'button', componentClass: 'col-md-12', componentMicro: [
+              { key: 'back', microName: 'Kembali', microRouting: 'back', microText: 'Kembali', microClass: 'btn-light' },
+              { key: 'submit', microName: '', microRouting: 'add', microText: '', microClass: 'btn-primary' }
+            ]
+          },
+        ]
+      }
+    ],
+  },
+  {
+    transTitle: 'Shipment',
+    transRouting: 'shipment-edit',
+    transProperties: [
+      {
+        dataName: 'menuEdit', dataMicro: [
+          {
+            componentName: 'fieldHeader', componentTitle: '', componentClass: 'col-md-6', componentMicro: [
+              { key: 'shipNumber', microName: 'Ship Number', microType: 'text', microText: 'Masukan order number', microClass: '', microValue:'' },
+              { key: 'shipDate', microName: 'Ship Date', microType: 'date', microText: 'Masukan tanggal order', microClass: '', microValue:'' },
+              { key: 'courier', microName: 'Nama Courier', microType: 'text', microText: 'Masukan Nama Sales', microClass: '', microValue:'' },
+            ]
+          },
+          {
+            componentName: 'fieldHeader', componentTitle: '', componentClass: 'col-md-6', componentMicro: [
+              { key: 'customer', microName: 'Customer', microType: 'text', microText: 'Masukan Nama Customer', microClass: '', microValue:'' },
+              { key: 'shipTo', microName: 'Ship to', microType: 'text', microText: 'Masukan Ship to', microClass: '', microValue:'' },
+            ]
+          },
+          {
+            componentName: 'fieldTable', componentTitle: '', componentClass: 'col-md-12', componentMicro: [
+              { key: 'soNumber', microName: 'Nomor SO', microType: 'text', width: 100, microText: 'Masukan Kode', microFormat: '', microClass: '', },
+              { key: 'productCode', microName: 'Kode Produk', microType: 'text', width: 100, microText: 'Masukan Kode', microFormat: '', microClass: '', },
+              { key: 'productName', microName: 'Nama Produk', microType: 'text', width: 0, microText: 'Masukan Nama', microClass: '', },
+              { key: 'noBatch', microName: 'No. Batch', microType: 'text', width: 0, microText: 'Masukan Spesifikasi', microClass: '', },
+              { key: 'tableUoM', microName: 'UoM', microType: 'text', width: 0, microText: 'Masukan Quantity', microClass: '', },
+              { key: 'qty', microName: 'Qty', microType: 'numeric', width: 0, microText: 'Masukan Unit', microClass: '', },
+              { key: 'tableTotal', microName: 'Total Pack', microType: 'numeric', width: 0, microText: 'Masukan Unit', microClass: '', },
+            ]
+          },
+          {
+            componentName: 'fieldNote', componentTitle: 'Catatan', componentClass: 'col-md-12', componentMicro: [
+              { key: 'note', microName: 'Note', microType: 'textarea', microText: 'Masukan Catatan Tambahan', microClass: '', microValue:'' }
+            ]
+          },
+          {
+            componentName: 'fieldTotal', componentTitle: 'Total', componentClass: 'col-md-12', componentMicro: [
+              { key: 'qty', microName: 'Total QTY', value: '', editableTotal: false, microType: 'number', microMath: '', microClass: 'col-md-4' },
+              { key: 'tableTotal', microName: 'Total Pack', value: '', editableTotal: false, microType: 'number', microMath: 'plus', microClass: 'col-md-4' },
+              { key: 'total', microName: 'Total Tonase', editableTotal: false, value: '', microType: 'number', microClass: 'col-md-4' }
+            ]
+          },
+          {
+            componentName: 'routingButton', componentTitle: 'button', componentClass: 'col-md-12', componentMicro: [
+              { key: 'back', microName: 'Kembali', microRouting: 'back', microText: 'Kembali', microClass: 'btn-light' },
+              { key: 'submit', microName: '', microRouting: 'add', microText: '', microClass: 'btn-primary' }
+            ]
+          },
+        ]
+      }
+    ],
+  },
+  // Purchase Request
+  {
+    transTitle: 'Purchase Request',
+    transRouting: 'purchase-request',
+    transProperties: [
+      {
+        dataName: 'menuList', dataMicro: [
+          {key: 'PrNo',microName: 'Kode PR', microType: 'text', width:110, microText: 'Masukan Nama', microClass: ''},
+          {key: 'PrRequestBy',microName: 'Requester', microType: 'text', width:0, microText: 'Masukan Nama', microClass: ''},
+          {key: 'PrRequestByDept',microName: 'Departement', microType: 'text', width:0, microText: 'Masukan Spesifikasi', microClass: ''},
+          {key: 'PrPurpose',microName: 'Purpose', microType: 'text', width:0, microText: 'Masukan Spesifikasi', microClass: ''},
+          {key: 'dateReq',microName: 'Request Date', microType: 'date', width:0, microText: 'Masukan Kode', microFormat: 'DD-MM-YYYY', microClass: ''},
+          {key: 'PrNeedDate',microName: 'Needed Date', microType: 'date', width:0, microText: 'Masukan Kode', microFormat: 'DD-MM-YYYY', microClass: ''},
+          {key: 'PrStatus',microName: 'Status', microType: 'text', width:100, microText: 'Masukan Nama', microClass: ''},
+          { key: 'opsi', microName: '', microType: 'dropdown', width: 0, microText: '', microFormat: '', microClass: '' },
+        ]
+      },
+      {
+        dataName: 'routingButton', dataTitle: 'button', dataClass: 'col-md-12', dataMicro: [
+          { key: 'add', microName: '', microRouting: 'add', microText: '', microClass: 'btn-primary' }
+        ]
+      }
+    ],
+    transData: [
+      {
+        key: '001',
+        header: [
+          { prCode: 'PR00001', requester: 'mamat', departement: 'Gudang', purpose: 'Tambah Stock', dateReq: '2023-12-01', dateNeed: '2023-12-01', status: 'Approve' }
+        ],
+        table: [                
+          {itemCode: 'MIE001', itemName: 'Mie Gelas', tableType: 'barang', tableKet: '-', tableDesc: 'bacot', tableReff: 'ABC123', tableCredit: 30000, tableDebit: 10000},
+          {itemCode: 'MIE001', itemName: 'Mie Gelas', tableType: 'barang', tableKet: '-', tableDesc: 'bacot', tableReff: 'ABC123', tableCredit: 20000, tableDebit: 10000}
+        ],
+        footer: [
+          { note: 'Nggak Ada'}
+        ]
+      },
+    ]
+  },
+  {
+    transTitle: 'Purchase Request',
+    transRouting: 'purchase-request-add',
+    transProperties: [
+      {
+        dataName: 'menuAdd', dataMicro: [
+          {componentName: 'fieldHeader', componentTitle: '', componentClass: 'col-md-6', componentMicro: [
+            {key:'requester', microName: 'Requester', microType: 'multiselect', microOptions: [], microText: 'Masukan peminta', microClass: ''},
+            {key: 'PrRequestByDept', microName: 'Departement', microType: 'text', microText: 'Masukan departemen', microClass: ''},
+          ]},
+          {componentName: 'fieldHeader', componentTitle: '', componentClass: 'col-md-6', componentMicro: [
+            {key:'PrPurpose', microName: 'Purpose', microType: 'text', microText: 'Masukan Alasan permintaan', microClass: ''},
+            {key:'PrNeedDate', microName: 'Needed Date', microType: 'date', microText: 'Masukan', microClass: ''},
+          ]},
+          {componentName: 'fieldTable', componentTitle: '', componentClass: 'col-md-12', componentMicro: [
+            {key: 'itemId',microName: 'Kode Barang', microType: 'autocomplete', microOptions: [], width:100, microText: 'Masukan Kode',microClass: ''},
+            {key: 'itemName',microName: 'Nama Barang', microType: 'autocomplete', microOptions: [], width:175, microText: 'Masukan Kode',microClass: ''},
+            {key: 'itemDescription',microName: 'Deskripsi', microType: 'text', width:0, microText: 'Masukan Nama', microClass: ''},
+            {key: 'itemPRType',microName: 'Barang /Jasa', microType: 'dropdown', microOptions: ['barang', 'jasa'], width:100, microText: 'Masukan Nama', microClass: ''},
+            {key: 'itemSpec',microName: 'Keterangan (Detail Spec)', microType: 'text', width:0, microText: 'Masukan Spesifikasi', microClass: ''},
+            {key: 'itemUm',microName: 'UoM', microType: 'text', width:50, microText: 'Masukan Quantity', microClass: ''},
+            {key: 'itemQty',microName: 'Qty', microType: 'numeric', width:100, microText: 'Masukan Nama', microClass: ''},
+          ]},
+          {
+            componentName: 'fieldNote', componentTitle: 'Catatan', componentClass: 'col-md-12', componentMicro: [
+              { key: 'note', microName: 'Note', microType: 'textarea', microText: 'Masukan Catatan Tambahan', microClass: '', microValue:'' }
+            ]
+          },
+          {
+            componentName: 'fieldTotal', componentTitle: 'Total', componentClass: 'col-md-12', componentMicro: []
+          },
+          {
+            componentName: 'routingButton', componentTitle: 'button', componentClass: 'col-md-12', componentMicro: [
+              { key: 'back', microName: 'Kembali', microRouting: 'back', microText: 'Kembali', microClass: 'btn-light' },
+              { key: 'submit', microName: '', microRouting: 'add', microText: '', microClass: 'btn-primary' }
+            ]
+          },
+        ]
+      },
+      {
+        dataName: 'routingButton', dataTitle: 'button', dataClass: 'col-md-12', dataMicro: [
+          { key: 'add', microName: '', microRouting: 'add', microText: '', microClass: 'btn-primary' }
+        ]
+      }
+    ]
+  },
+  {
+    transTitle: 'Purchase Request',
+    transRouting: 'purchase-request-detail',
+    transProperties: [
+      {
+        dataName: 'menuDetail', dataMicro: [
+          {componentName: 'fieldHeader', componentTitle: '', componentClass: 'col-md-6', componentMicro: [
+            {key:'PrRequestBy', microName: 'Requester', microType: 'text', microText: 'Masukan peminta', microClass: ''},
+            {key: 'PrRequestByDept', microName: 'Departement', microType: 'text', microText: 'Masukan departemen', microClass: ''},
+          ]},
+          {componentName: 'fieldHeader', componentTitle: '', componentClass: 'col-md-6', componentMicro: [
+            {key:'PrPurpose', microName: 'Purpose', microType: 'text', microText: 'Masukan Alasan permintaan', microClass: ''},
+            {key:'PrNeedDate', microName: 'Needed Date', microType: 'date', microText: 'Masukan', microClass: ''},
+          ]},
+          {componentName: 'fieldTable', componentTitle: '', componentClass: 'col-md-12', componentMicro: [
+            {key: 'itemId',microName: 'Kode Barang', microType: 'text', width:125, microText: 'Masukan Kode',microClass: ''},
+            {key: 'itemName',microName: 'Nama Barang', microType: 'text', width:0, microText: 'Masukan Kode',microClass: ''},
+            {key: 'itemDescription',microName: 'Deskripsi', microType: 'text', width:0, microText: 'Masukan Nama', microClass: ''},
+            {key: 'itemPRType',microName: 'Barang /Jasa', microType: 'text', width:100, microText: 'Masukan Nama', microClass: ''},
+            {key: 'itemSpec',microName: 'Keterangan (Spec)', microType: 'text', width:0, microText: 'Masukan Spesifikasi', microClass: ''},
+            {key: 'itemUm',microName: 'UoM', microType: 'text', width:50, microText: 'Masukan Quantity', microClass: ''},
+            {key: 'itemQty',microName: 'Quantity', microType: 'numeric', width:50, microText: 'Masukan Nama', microClass: ''},
+          ]},
+          {
+            componentName: 'fieldNote', componentTitle: 'Catatan', componentClass: 'col-md-12', componentMicro: [
+              { key: 'PrNotes', microName: 'Note', microType: 'textarea', microText: 'Masukan Catatan Tambahan', microClass: '', microValue:'' }
+            ]
+          },
+          {
+            componentName: 'fieldTotal', componentTitle: 'Total', componentClass: 'col-md-12', componentMicro: []
+          },
+          {
+            componentName: 'routingButton', componentTitle: 'button', componentClass: 'col-md-12', componentMicro: [
+              { key: 'back', microName: 'Kembali', microRouting: 'back', microText: 'Kembali', microClass: 'btn-light' },
+              { key: 'submit', microName: '', microRouting: 'add', microText: '', microClass: 'btn-primary' }
+            ]
+          },
+        ]
+      },
+      {
+        dataName: 'routingButton', dataTitle: 'button', dataClass: 'col-md-12', dataMicro: [
+          { key: 'add', microName: '', microRouting: 'add', microText: '', microClass: 'btn-primary' }
+        ]
+      }
+    ]
+  },
+  {
+    transTitle: 'Purchase Request',
+    transRouting: 'purchase-request-edit',
+    transProperties: [
+      {
+        dataName: 'menuEdit', dataMicro: [
+          {componentName: 'fieldHeader', componentTitle: '', componentClass: 'col-md-6', componentMicro: [
+            {key:'journal', microName: 'Requester', microType: 'text', microText: 'Masukan peminta', microClass: ''},
+            {key: 'date', microName: 'Departement', microType: 'text', microText: 'Masukan departemen', microClass: ''},
+          ]},
+          {componentName: 'fieldHeader', componentTitle: '', componentClass: 'col-md-6', componentMicro: [
+            {key:'code', microName: 'Purpose', microType: 'text', microText: 'Masukan Alasan permintaan', microClass: ''},
+            {key:'code', microName: 'Needed Date', microType: 'date', microText: 'Masukan', microClass: ''},
+          ]},
+          {componentName: 'fieldTable', componentTitle: '', componentClass: 'col-md-12', componentMicro: [
+            {key: 'itemCode',microName: 'Kode Barang', microType: 'text', width:0, microText: 'Masukan Kode',microClass: ''},
+            {key: 'itemName',microName: 'Nama Barang', microType: 'text', width:0, microText: 'Masukan Kode',microClass: ''},
+            {key: 'tableDesc',microName: 'Deskripsi', microType: 'text', width:0, microText: 'Masukan Nama', microClass: ''},
+            {key: 'tableType',microName: 'Barang /Jasa', microType: 'text', width:0, microText: 'Masukan Nama', microClass: ''},
+            {key: 'tableKet',microName: 'Keterangan Tipe', microType: 'text', width:0, microText: 'Masukan Spesifikasi', microClass: ''},
+            {key: 'tableCredit',microName: 'UoM', microType: 'text', width:0, microText: 'Masukan Quantity', microClass: ''},
+            {key: 'tableReff',microName: 'Quantity', microType: 'numeric', width:100, microText: 'Masukan Nama', microClass: ''},
+          ]},
+          {
+            componentName: 'fieldNote', componentTitle: 'Catatan', componentClass: 'col-md-12', componentMicro: [
+              { key: 'note', microName: 'Note', microType: 'textarea', microText: 'Masukan Catatan Tambahan', microClass: '', microValue:'' }
+            ]
+          },
+          {
+            componentName: 'fieldTotal', componentTitle: 'Total', componentClass: 'col-md-12', componentMicro: []
+          },
+          {
+            componentName: 'routingButton', componentTitle: 'button', componentClass: 'col-md-12', componentMicro: [
+              { key: 'back', microName: 'Kembali', microRouting: 'back', microText: 'Kembali', microClass: 'btn-light' },
+              { key: 'submit', microName: '', microRouting: 'add', microText: '', microClass: 'btn-primary' }
+            ]
+          },
+        ]
+      },
+      {
+        dataName: 'routingButton', dataTitle: 'button', dataClass: 'col-md-12', dataMicro: [
+          { key: 'add', microName: '', microRouting: 'add', microText: '', microClass: 'btn-primary' }
+        ]
+      }
+    ]
+  },
+  // Purchase Order
+  {
+    transTitle: 'Purchase Order',
+    transRouting: 'po',
+    transProperties: [
+      {
+        dataName: 'menuList', dataMicro: [
+          {key: 'PoNo',microName: 'Kode PO', microType: 'text', width:100, microText: 'Masukan Nama', microClass: ''},
+          {key: 'PoUserCreated',microName: 'User Request', microType: 'text', width:0, microText: 'Masukan Nama', microClass: ''},
+          {key: 'PoSupplier',microName: 'Supplier', microType: 'text', width:0, microText: 'Masukan Nama', microClass: ''},
+          {key: 'poDate',microName: 'Created Date', microType: 'date', width:0, microText: 'Masukan Kode', microFormat: 'DD-MM-YYYY', microClass: ''},
+          {key: 'PoNeedDate',microName: 'Needed Date', microType: 'date', width:0, microText: 'Masukan Kode', microFormat: 'DD-MM-YYYY', microClass: ''},
+          {key: 'PoCreditTerms',microName: 'Credit Terms', microType: 'text', width:125, microText: 'Masukan Nama', microClass: ''},
+          {key: 'PoStatus',microName: 'Status', microType: 'text', width:75, microText: 'Masukan Spesifikasi', microClass: ''},
+          { key: 'opsi', microName: '', microType: 'dropdown', width: 0, microText: '', microFormat: '', microClass: '' },
+        ]
+      },
+      {
+        dataName: 'routingButton', dataTitle: 'button', dataClass: 'col-md-12', dataMicro: [
+          { key: 'add', microName: '', microRouting: 'add', microText: '', microClass: 'btn-primary' }
+        ]
+      }
+    ],
+    transData: [
+      {
+        key: '001',
+        header: [
+          { codePR:'PR00001', codePO: 'PO00001', dateNeed: '2023-12-01', reqUser: 10, supplier: 'Yamaaf', unitCost: 10000000, creditTerms: '-', status: 'Pending' }
+        ],
+        table: [                
+          {itemCode: 'KDS001', itemName: 'Kardus Mie', uom: 'pack', qty: 10, harga: 1000000, diskon: 10, tableTotal: 9000000},
+          {itemCode: 'KDS001', itemName: 'Kardus Mie', uom: 'pack', qty: 10, harga: 1000000, diskon: 10, tableTotal: 9000000}
+        ],
+        footer: [
+          { note: 'Nggak Ada'}
+        ]
+      },
+      {
+        key: '001',
+        header: [
+          { codePR:'PR00001', codePO: 'PO00001', dateNeed: '2023-12-01', reqUser: 10, supplier: 'Yamaaf', unitCost: 10000000, status: 'Pending' }
+        ],
+        table: [                
+          {tableDate: '09/01/2023', tableName: 'azam', tableDesc: 'bacot', tableReff: 'ABC123', tableCredit: 30000, tableDebit: 10000},
+          {tableDate: '09/01/2023', tableName: 'azam', tableDesc: 'bacot', tableReff: 'ABC123', tableCredit: 20000, tableDebit: 10000}
+        ],
+        footer: [
+          { note: 'Nggak Ada'}
+        ]
+      },
+    ]
+  },
+  {
+    transTitle: 'Purchase Order',
+    transRouting: 'po-add',
+    transProperties: [
+      {
+        dataName: 'menuAdd', dataMicro: [
+          {componentName: 'fieldHeader', componentTitle: '', componentClass: 'col-md-6', componentMicro: [
+            {key:'datePO', microName: 'PO Date', microType: 'date', microText: 'Masukan kode purchase order', microClass: ''},
+            {key:'dateNeedPO', microName: 'PO Need Date', microType: 'date', microText: 'Masukan kode purchase order', microClass: ''},
+            {key:'creditTerms', microName: 'Credit Terms', microType: 'text', microText: 'Masukan Credit Terms', microClass: ''},
+          ]},
+          {componentName: 'fieldHeader', componentTitle: '', componentClass: 'col-md-6', componentMicro: [
+            {key:'supplier', microName: 'Supplier', microType: 'multiselect', microOptions: [], microClass: ''},
+            {key:'shipTo', microName: 'Ship To', microType: 'multiselect', microOptions: [], microClass: ''},
+          ]},
+          {componentName: 'fieldTable', componentTitle: '', componentClass: 'col-md-12', componentMicro: [
+            {key: 'PrCode',microName: 'Kode PR', microType: 'text', width:125, microOptions: [], microClass: ''},
+            {key: 'itemCode',microName: 'Kode Item', microType: 'text', width:150, microOptions: [], microClass: ''},
+            {key: 'itemName',microName: 'Nama Item', microType: 'text', width:250, microText: 'Masukan Nama', microClass: ''},
+            {key: 'uom',microName: 'UoM', microType: 'text', width:0, microText: 'Masukan Nama', microClass: ''},
+            {key: 'qty',microName: 'Qty.', microType: 'numeric', width:0, microText: 'Masukan Spesifikasi', microClass: ''},
+            {key: 'harga',microName: 'Harga', microType: 'numeric', width:0, microText: 'Masukan Quantity', microClass: ''},
+            {key: 'tableTotal',microName: 'Total', microType: 'numeric', width:0, microText: 'Masukan Unit', microClass: ''},
+          ]},
+          {
+            componentName: 'fieldNote', componentTitle: 'Catatan', componentClass: 'col-md-12', componentMicro: [
+              { key: 'note', microName: 'Note', microType: 'textarea', microText: 'Masukan Catatan Tambahan', microClass: '', microValue:'' }
+            ]
+          },
+          {
+            componentName: 'fieldTotal', componentTitle: 'Total', componentClass: 'col-md-12', componentMicro: [
+              { key: 'tableTotal', microName: 'Sub Total', value: 0, editableTotal: false, microType: 'number', microMath: 'plus', microClass: 'col-md-4' },
+              { key: 'ppn', microName: 'PPn (%)', value: 11, editableTotal: false, fixedValue: true, microType: 'number', microMath: 'percent-minus', microClass: 'col-md-4' },
+              { key: 'total', microName: 'Grand Total', editableTotal: false, value: '', microType: 'number', microClass: 'col-md-4 d-none' }
+            ]
+          },
+          {
+            componentName: 'routingButton', componentTitle: 'button', componentClass: 'col-md-12', componentMicro: [
+              { key: 'back', microName: 'Kembali', microRouting: 'back', microText: 'Kembali', microClass: 'btn-light' },
+              { key: 'submit', microName: '', microRouting: 'add', microText: '', microClass: 'btn-primary' }
+            ]
+          },
+        ]
+      },
+      {
+        dataName: 'routingButton', dataTitle: 'button', dataClass: 'col-md-12', dataMicro: [
+          { key: 'add', microName: '', microRouting: 'add', microText: '', microClass: 'btn-primary' }
+        ]
+      }
+    ]
+  },
+  {
+    transTitle: 'Purchase Order',
+    transRouting: 'po-detail',
+    transProperties: [
+      {
+        dataName: 'menuDetail', dataMicro: [
+          {componentName: 'fieldHeader', componentTitle: '', componentClass: 'col-md-6', componentMicro: [
+            {key:'poDate', microName: 'PO Date', microType: 'date', microText: 'Masukan kode purchase order', microClass: ''},
+            {key:'PoNeedDate', microName: 'PO Need Date', microType: 'date', microText: 'Masukan kode purchase order', microClass: ''},
+            {key:'PoCreditTerms', microName: 'Credit Terms', microType: 'text', microText: 'Masukan Credit Terms', microClass: ''},
+          ]},
+          {componentName: 'fieldHeader', componentTitle: '', componentClass: 'col-md-6', componentMicro: [
+            {key:'PoSupplier', microName: 'Supplier', microType: 'multiselect', microOptions: [], microClass: ''},
+            {key:'PoShipto', microName: 'Ship To', microType: 'multiselect', microOptions: [], microClass: ''},
+          ]},
+          {componentName: 'fieldTable', componentTitle: '', componentClass: 'col-md-12', componentMicro: [
+            {key: 'item',microName: 'Kode PR', microType: 'text', width:125, microOptions: [], microClass: ''},
+            {key: 'itemId',microName: 'Kode Item', microType: 'text', width:150, microOptions: [], microClass: ''},
+            {key: 'itemName',microName: 'Nama Item', microType: 'text', width:0, microText: 'Masukan Nama', microClass: ''},
+            {key: 'itemUm',microName: 'UoM', microType: 'text', width:75, microText: 'Masukan Nama', microClass: ''},
+            {key: 'itemQty',microName: 'Qty.', microType: 'numeric', width:0, microText: 'Masukan Spesifikasi', microClass: ''},
+            {key: 'itemPrice',microName: 'Harga', microType: 'numeric', width:0, microText: 'Masukan Quantity', microClass: ''},
+            {key: 'tableTotal',microName: 'Total', microType: 'numeric', width:0, microText: 'Masukan Unit', microClass: ''},
+          ]},
+          {
+            componentName: 'fieldNote', componentTitle: 'Catatan', componentClass: 'col-md-12', componentMicro: [
+              { key: 'PoNotes', microName: 'Note', microType: 'textarea', microText: 'Masukan Catatan Tambahan', microClass: '', microValue:'' }
+            ]
+          },
+          {
+            componentName: 'fieldTotal', componentTitle: 'Total', componentClass: 'col-md-12', componentMicro: [
+              { key: 'tableTotal', microName: 'Sub Total', value: 0, editableTotal: false, microType: 'number', microMath: 'plus', microClass: 'col-md-4' },
+              { key: 'total', microName: 'Grand Total', editableTotal: false, value: '', microType: 'number', microClass: 'col-md-4 d-none' }
+            ]
+          },
+          {
+            componentName: 'routingButton', componentTitle: 'button', componentClass: 'col-md-12', componentMicro: [
+              { key: 'back', microName: 'Kembali', microRouting: 'back', microText: 'Kembali', microClass: 'btn-light' },
+              { key: 'submit', microName: '', microRouting: 'add', microText: '', microClass: 'btn-primary' }
+            ]
+          },
+        ]
+      },
+      {
+        dataName: 'routingButton', dataTitle: 'button', dataClass: 'col-md-12', dataMicro: [
+          { key: 'add', microName: '', microRouting: 'add', microText: '', microClass: 'btn-primary' }
+        ]
+      }
+    ]
+  },
+  {
+    transTitle: 'Purchase Order',
+    transRouting: 'po-edit',
+    transProperties: [
+      {
+        dataName: 'menuEdit', dataMicro: [
+          {componentName: 'fieldHeader', componentTitle: '', componentClass: 'col-md-6', componentMicro: [
+            {key:'codePR', microName: 'Kode PR', microType: 'text', microText: 'Masukan kode purchase request', microClass: ''},
+            {key:'datePO', microName: 'Tanggal PO', microType: 'date', microText: 'Masukan kode purchase order', microClass: ''},
+            {key:'creditTerms', microName: 'Credit Terms', microType: 'text', microText: 'Masukan kode purchase order', microClass: ''},
+          ]},
+          {componentName: 'fieldHeader', componentTitle: '', componentClass: 'col-md-6', componentMicro: [
+            {key:'supplier', microName: 'Supplier', microType: 'text', microText: 'Masukan supplier', microClass: ''},
+            {key:'shipTo', microName: 'Ship To', microType: 'text', microText: 'Masukan tujuan pengiriman', microClass: ''},
+          ]},
+          {componentName: 'fieldTable', componentTitle: '', componentClass: 'col-md-12', componentMicro: [
+            {key: 'itemCode',microName: 'Kode Item', microType: 'text', width:150, microText: 'Masukan Nama', microClass: ''},
+            {key: 'itemName',microName: 'Nama Item', microType: 'text', width:0, microText: 'Masukan Nama', microClass: ''},
+            {key: 'uom',microName: 'UoM', microType: 'text', width:0, microText: 'Masukan Nama', microClass: ''},
+            {key: 'qty',microName: 'Qty.', microType: 'numeric', width:0, microText: 'Masukan Spesifikasi', microClass: ''},
+            {key: 'harga',microName: 'Harga', microType: 'numeric', width:0, microText: 'Masukan Quantity', microClass: ''},
+            {key: 'diskon',microName: 'Diskon', microType: 'numeric', width:0, microText: 'Masukan Quantity', microClass: ''},
+            {key: 'tableTotal',microName: 'Total', microType: 'numeric', width:0, microText: 'Masukan Unit', microClass: ''},
+          ]},
+          {
+            componentName: 'fieldNote', componentTitle: 'Catatan', componentClass: 'col-md-12', componentMicro: [
+              { key: 'note', microName: 'Note', microType: 'textarea', microText: 'Masukan Catatan Tambahan', microClass: '', microValue:'' }
+            ]
+          },
+          {
+            componentName: 'fieldTotal', componentTitle: 'Total', componentClass: 'col-md-12', componentMicro: [
+              { key: 'tableTotal', microName: 'Sub Total', value: 0, editableTotal: false, microType: 'number', microMath: 'plus', microClass: 'col-md-4' },
+              { key: 'ppn', microName: 'PPn (%)', value: '', editableTotal: false, microType: 'number', microMath: 'percent-plus', microClass: 'col-md-4' },
+              { key: 'total', microName: 'Grand Total', editableTotal: false, value: '', microType: 'number', microClass: 'col-md-4' }
+            ]
+          },
+          {
+            componentName: 'routingButton', componentTitle: 'button', componentClass: 'col-md-12', componentMicro: [
+              { key: 'back', microName: 'Kembali', microRouting: 'back', microText: 'Kembali', microClass: 'btn-light' },
+              { key: 'submit', microName: '', microRouting: 'add', microText: '', microClass: 'btn-primary' }
+            ]
+          },
+        ]
+      },
+      {
+        dataName: 'routingButton', dataTitle: 'button', dataClass: 'col-md-12', dataMicro: [
+          { key: 'add', microName: '', microRouting: 'add', microText: '', microClass: 'btn-primary' }
+        ]
+      }
+    ]
+  },
+  // Purchase Order Receipt
+  {
+    transTitle: 'Purchase Order Receipt',
+    transRouting: 'po-receipt',
+    transProperties: [
+      {
+        dataName: 'menuList', dataMicro: [
+          {key: 'supplier',microName: 'Supplier', microType: 'text', width:0, microText: 'Masukan Nama', microClass: ''},
+          {key: 'noPOR',microName: 'No. PO Receipt', microType: 'text', width:110, microText: 'Masukan Nama', microClass: ''},
+          {key: 'noSJ',microName: 'No. Surat Jalan', microType: 'text', width:110, microText: 'Masukan Nama', microClass: ''},
+          {key: 'noKen',microName: 'No. Kendaraan', microType: 'text', width:0, microText: 'Masukan Nama', microClass: ''},
+          {key: 'tglReceipt',microName: 'Tgl. Receipt', microType: 'date', width:0, microText: 'Masukan Kode', microFormat: 'DD-MM-YYYY', microClass: ''},
+          {key: 'status',microName: 'Status', microType: 'text', width:110, microText: 'Masukan Spesifikasi', microClass: ''},
+          { key: 'opsi', microName: '', microType: 'dropdown', width: 0, microText: '', microFormat: '', microClass: '' },
+        ]
+      },
+      {
+        dataName: 'routingButton', dataTitle: 'button', dataClass: 'col-md-12', dataMicro: [
+          { key: 'add', microName: '', microRouting: 'add', microText: '', microClass: 'btn-primary' }
+        ]
+      }
+    ],
+    transData: [
+      {
+        key: '001',
+        header: [
+          { noPOR: 'POR0001', noSJ: 'SJ00001', noKen: 'KEN0001', tglReceipt: '2023-12-01', supplier: 'Yamaaf', status: 'Pending' }
+        ],
+        table: [                
+          {poCode: 'PO0001', itemCode: 'KDS001', itemName: 'Kardus Mie', noBatch: 'BCH0001', uom: 'pack', qtyRequest: 10, qtyReceive: 10},
+          {poCode: 'PO0001', itemCode: 'KDS001', itemName: 'Kardus Mie', noBatch: 'BCH0001', uom: 'pack', qtyRequest: 10, qtyReceive: 10}
+        ],
+        footer: [
+          { note: 'Nggak Ada'}
+        ]
+      },
+      {
+        key: '001',
+        header: [
+          { codePR:'PR00001', codePO: 'PO00001', dateNeed: '2023-12-01', reqUser: 10, supplier: 'Yamaaf', unitCost: 10000000, status: 'Pending' }
+        ],
+        table: [                
+          {tableDate: '09/01/2023', tableName: 'azam', tableDesc: 'bacot', tableReff: 'ABC123', tableCredit: 30000, tableDebit: 10000},
+          {tableDate: '09/01/2023', tableName: 'azam', tableDesc: 'bacot', tableReff: 'ABC123', tableCredit: 20000, tableDebit: 10000}
+        ],
+        footer: [
+          { note: 'Nggak Ada'}
+        ]
+      },
+    ]
+  },
+  {
+    transTitle: 'Purchase Order Receipt',
+    transRouting: 'po-receipt-add',
+    transProperties: [
+      {
+        dataName: 'menuAdd', dataMicro: [
+          {componentName: 'fieldHeader', componentTitle: '', componentClass: 'col-md-6', componentMicro: [
+            {key:'datePO', microName: '*PO Receipt Date', microType: 'date', microText: 'Masukan kode purchase order', microClass: ''},
+          ]},
+          {componentName: 'fieldHeader', componentTitle: '', componentClass: 'col-md-6', componentMicro: [
+            {key:'supplier', microName: '*Supplier', microType: 'multiselect', microOptions: [], microClass: ''},
+          ]},
+          {componentName: 'fieldTable', componentTitle: '', componentClass: 'col-md-12', componentMicro: [
+            {key: 'PrCode',microName: '*Kode PO', microType: 'text', width:110, microOptions: [], microClass: ''},
+            {key: 'itemName',microName: 'Nama Item', microType: 'text', width:0, microText: 'Masukan Nama', microClass: ''},
+            {key: 'noBatch',microName: '*No. Batch', microType: 'text', width:0, microText: 'Masukan Nama', microClass: ''},
+            {key: 'location',microName: '*Lokasi', microType: 'autocomplete', width:150, microOptions: [], microClass: ''},
+            {key: 'uom',microName: 'UoM', microType: 'text', width:75, microText: 'Masukan Nama', microClass: ''},
+            {key: 'qtyReq',microName: 'Qty. Order', microType: 'numeric', width:0, microText: 'Masukan Spesifikasi', microClass: ''},
+            {key: 'qtyOnHand',microName: 'Qty. on Hand', microType: 'numeric', width:0, microText: 'Masukan Spesifikasi', microClass: ''},
+            {key: 'qtyRec',microName: '*Qty. Recive', microType: 'numeric', width:0, microText: 'Masukan Spesifikasi', microClass: ''},
+            {key: 'tableTotal',microName: 'Qty. Shortage', microType: 'numeric', width:0, microText: 'Masukan Unit', microClass: ''},
+          ]},
+          {
+            componentName: 'fieldNote', componentTitle: 'Catatan', componentClass: 'col-md-12', componentMicro: [
+              { key: 'note', microName: 'Note', microType: 'textarea', microText: 'Masukan Catatan Tambahan', microClass: '', microValue:'' }
+            ]
+          },
+          {
+            componentName: 'fieldTotal', componentTitle: 'Total', componentClass: 'col-md-12', componentMicro: [
+              { key: 'tableTotal', microName: 'Total Outstanding', value: 0, editableTotal: false, microType: 'number', microMath: 'plus', microClass: 'col-md-4' },
+              { key: 'total', microName: 'Grand Total', editableTotal: false, value: '', microType: 'number', microClass: 'col-md-4 d-none' }
+            ]
+          },
+          {
+            componentName: 'routingButton', componentTitle: 'button', componentClass: 'col-md-12', componentMicro: [
+              { key: 'back', microName: 'Kembali', microRouting: 'back', microText: 'Kembali', microClass: 'btn-light' },
+              { key: 'submit', microName: '', microRouting: 'add', microText: '', microClass: 'btn-primary' }
+            ]
+          },
+        ]
+      },
+      {
+        dataName: 'routingButton', dataTitle: 'button', dataClass: 'col-md-12', dataMicro: [
+          { key: 'add', microName: '', microRouting: 'add', microText: '', microClass: 'btn-primary' }
+        ]
+      }
+    ]
+  },
+  {
+    transTitle: 'Purchase Order Receipt',
+    transRouting: 'po-receipt-detail',
+    transProperties: [
+      {
+        dataName: 'menuDetail', dataMicro: [
+          {componentName: 'fieldHeader', componentTitle: '', componentClass: 'col-md-6', componentMicro: [
+            {key:'supplier', microName: 'Supplier', microType: 'text', microText: 'Masukan supplier', microClass: ''},
+            {key:'noPOR', microName: 'No. PO Receipt', microType: 'text', microText: 'Masukan nomor purchase order receipt', microClass: ''},
+            {key:'noSJ', microName: 'No. Surat Jalan', microType: 'text', microText: 'Masukan nomor surat jalan', microClass: ''},
+          ]},
+          {componentName: 'fieldHeader', componentTitle: '', componentClass: 'col-md-6', componentMicro: [
+            {key:'noKen', microName: 'No. Kendaraan', microType: 'text', microText: 'Masukan nomor kendaraan', microClass: ''},
+            {key:'tglReceipt', microName: 'Tgl. Receipt', microType: 'date', microText: 'Masukan tujuan pengiriman', microClass: ''},
+          ]},
+          {componentName: 'fieldTable', componentTitle: '', componentClass: 'col-md-12', componentMicro: [
+            {key: 'poCode',microName: 'Kode PO', microType: 'text', width:100, microText: 'Masukan Nama', microClass: ''},
+            {key: 'itemCode',microName: 'Kode Item', microType: 'text', width:100, microText: 'Masukan Nama', microClass: ''},
+            {key: 'itemName',microName: 'Nama Item', microType: 'text', width:0, microText: 'Masukan Nama', microClass: ''},
+            {key: 'noBatch',microName: 'No. Batch', microType: 'text', width:0, microText: 'Masukan Nama', microClass: ''},
+            {key: 'uom',microName: 'UoM', microType: 'text', width:100, microText: 'Masukan Nama', microClass: ''},
+            {key: 'qtyRequest',microName: 'Qty. Request', microType: 'numeric', width:0, microText: 'Masukan Quantity', microClass: ''},
+            {key: 'qtyReceive',microName: 'Qty. Receive', microType: 'numeric', width:0, microText: 'Masukan Quantity', microClass: ''},
+          ]},
+          {
+            componentName: 'fieldNote', componentTitle: 'Catatan', componentClass: 'col-md-12', componentMicro: [
+              { key: 'note', microName: 'Note', microType: 'textarea', microText: 'Masukan Catatan Tambahan', microClass: '', microValue:'' }
+            ]
+          },
+          {
+            componentName: 'fieldTotal', componentTitle: 'Total', componentClass: 'col-md-12', componentMicro: [
+              { key: 'qtyRequest', microName: 'Total Qty Request', value: 0, editableTotal: false, microType: 'number', microMath: '', microClass: 'col-md-4' },
+              { key: 'qtyReceive', microName: 'Total Qty Receive', value: 0, editableTotal: false, microType: 'number', microMath: '', microClass: 'col-md-4' },
+              { key: 'total', microName: 'Grand Total', editableTotal: false, value: '', microType: 'number', microClass: 'col-md-4 d-none' }
+            ]
+          },
+          {
+            componentName: 'routingButton', componentTitle: 'button', componentClass: 'col-md-12', componentMicro: [
+              { key: 'back', microName: 'Kembali', microRouting: 'back', microText: 'Kembali', microClass: 'btn-light' },
+              { key: 'submit', microName: '', microRouting: 'add', microText: '', microClass: 'btn-primary' }
+            ]
+          },
+        ]
+      },
+      {
+        dataName: 'routingButton', dataTitle: 'button', dataClass: 'col-md-12', dataMicro: [
+          { key: 'add', microName: '', microRouting: 'add', microText: '', microClass: 'btn-primary' }
+        ]
+      }
+    ]
+  },
+  {
+    transTitle: 'Purchase Order Receipt',
+    transRouting: 'po-receipt-edit',
+    transProperties: [
+      {
+        dataName: 'menuEdit', dataMicro: [
+          {componentName: 'fieldHeader', componentTitle: '', componentClass: 'col-md-6', componentMicro: [
+            {key:'supplier', microName: 'Supplier', microType: 'text', microText: 'Masukan supplier', microClass: ''},
+            {key:'noPOR', microName: 'No. PO Receipt', microType: 'text', microText: 'Masukan nomor purchase order receipt', microClass: ''},
+            {key:'noSJ', microName: 'No. Surat Jalan', microType: 'text', microText: 'Masukan nomor surat jalan', microClass: ''},
+          ]},
+          {componentName: 'fieldHeader', componentTitle: '', componentClass: 'col-md-6', componentMicro: [
+            {key:'noKen', microName: 'No. Kendaraan', microType: 'text', microText: 'Masukan nomor kendaraan', microClass: ''},
+            {key:'tglReceipt', microName: 'Tgl. Receipt', microType: 'date', microText: 'Masukan tujuan pengiriman', microClass: ''},
+          ]},
+          {componentName: 'fieldTable', componentTitle: '', componentClass: 'col-md-12', componentMicro: [
+            {key: 'poCode',microName: 'Kode PO', microType: 'text', width:100, microText: 'Masukan Nama', microClass: ''},
+            {key: 'itemCode',microName: 'Kode Item', microType: 'text', width:100, microText: 'Masukan Nama', microClass: ''},
+            {key: 'itemName',microName: 'Nama Item', microType: 'text', width:0, microText: 'Masukan Nama', microClass: ''},
+            {key: 'noBatch',microName: 'No. Batch', microType: 'text', width:0, microText: 'Masukan Nama', microClass: ''},
+            {key: 'uom',microName: 'UoM', microType: 'text', width:100, microText: 'Masukan Nama', microClass: ''},
+            {key: 'qtyRequest',microName: 'Qty. Request', microType: 'numeric', width:0, microText: 'Masukan Quantity', microClass: ''},
+            {key: 'qtyReceive',microName: 'Qty. Receive', microType: 'numeric', width:0, microText: 'Masukan Quantity', microClass: ''},
+          ]},
+          {
+            componentName: 'fieldNote', componentTitle: 'Catatan', componentClass: 'col-md-12', componentMicro: [
+              { key: 'note', microName: 'Note', microType: 'textarea', microText: 'Masukan Catatan Tambahan', microClass: '', microValue:'' }
+            ]
+          },
+          {
+            componentName: 'fieldTotal', componentTitle: 'Total', componentClass: 'col-md-12', componentMicro: [
+              { key: 'qtyRequest', microName: 'Total Qty Request', value: 0, editableTotal: false, microType: 'number', microMath: '', microClass: 'col-md-4' },
+              { key: 'qtyReceive', microName: 'Total Qty Receive', value: 0, editableTotal: false, microType: 'number', microMath: '', microClass: 'col-md-4' },
+              { key: 'total', microName: 'Grand Total', editableTotal: false, value: '', microType: 'number', microClass: 'col-md-4 d-none' }
+            ]
+          },
+          {
+            componentName: 'routingButton', componentTitle: 'button', componentClass: 'col-md-12', componentMicro: [
+              { key: 'back', microName: 'Kembali', microRouting: 'back', microText: 'Kembali', microClass: 'btn-light' },
+              { key: 'submit', microName: '', microRouting: 'add', microText: '', microClass: 'btn-primary' }
+            ]
+          },
+        ]
+      },
+      {
+        dataName: 'routingButton', dataTitle: 'button', dataClass: 'col-md-12', dataMicro: [
+          { key: 'add', microName: '', microRouting: 'add', microText: '', microClass: 'btn-primary' }
+        ]
+      }
+    ]
+  },
+  // Purchase Invoice
+  {
+    transTitle: 'Purchase Invoice',
+    transRouting: 'po-invoice',
+    transProperties: [
+      {
+        dataName: 'menuList', dataMicro: [
+          {key: 'supplier',microName: 'Supplier', microType: 'text', width:0, microText: 'Masukan supplier', microClass: ''},
+          {key: 'codePI',microName: 'Kode PI', microType: 'text', width:110, microText: 'Masukan kode purchase invoice', microClass: ''},
+          {key: 'creditTerms',microName: 'Credit Terms', microType: 'text', width:110, microText: 'Masukan credit terms', microClass: ''},
+          {key: 'invoiceDate',microName: 'Invoice Date', microType: 'date', width:0, microText: 'Masukan Kode', microFormat: 'DD-MM-YYYY', microClass: ''},
+          {key: 'dueDate',microName: 'Due Date', microType: 'date', width:0, microText: 'Masukan Kode', microFormat: 'DD-MM-YYYY', microClass: ''},
+          {key: 'refNumber',microName: 'Reference Number', microType: 'text', width:0, microText: 'Masukan reference number', microClass: ''},
+          {key: 'status',microName: 'Status', microType: 'text', width:110, microText: 'Masukan Spesifikasi', microClass: ''},
+          { key: 'opsi', microName: '', microType: 'dropdown', width: 0, microText: '', microFormat: '', microClass: '' },
+        ]
+      },
+      {
+        dataName: 'routingButton', dataTitle: 'button', dataClass: 'col-md-12', dataMicro: [
+          { key: 'add', microName: '', microRouting: 'add', microText: '', microClass: 'btn-primary' }
+        ]
+      }
+    ],
+    transData: [
+      {
+        key: '001',
+        header: [
+          { codePI: 'PI00001', creditTerms: '-', noKen: 'KEN0001', invoiceDate: '2023-12-01', dueDate: '2023-12-01', reffNumber: '-', supplier: 'Yamaaf', status: 'Pending' }
+        ],
+        table: [                
+          {grCode: 'PO0001', itemCode: 'KDS001', itemName: 'Kardus Mie', uom: 'pack', qty: 10, price: 100000, discount: 10, amount: 900000},
+          {grCode: 'PO0001', itemCode: 'KDS001', itemName: 'Kardus Mie', uom: 'pack', qty: 10, price: 100000, discount: 0, amount: 1000000}
+        ],
+        footer: [
+          { note: 'Nggak Ada', additionalDiscount: 100000}
+        ]
+      },
+      {
+        key: '001',
+        header: [
+          { codePR:'PR00001', codePO: 'PO00001', dateNeed: '2023-12-01', reqUser: 10, supplier: 'Yamaaf', unitCost: 10000000, status: 'Pending' }
+        ],
+        table: [                
+          {tableDate: '09/01/2023', tableName: 'azam', tableDesc: 'bacot', tableReff: 'ABC123', tableCredit: 30000, tableDebit: 10000},
+          {tableDate: '09/01/2023', tableName: 'azam', tableDesc: 'bacot', tableReff: 'ABC123', tableCredit: 20000, tableDebit: 10000}
+        ],
+        footer: [
+          { note: 'Nggak Ada'}
+        ]
+      },
+    ]
+  },
+  {
+    transTitle: 'Purchase Invoice',
+    transRouting: 'po-invoice-add',
+    transProperties: [
+      {
+        dataName: 'menuAdd', dataMicro: [
+          {componentName: 'fieldHeader', componentTitle: '', componentClass: 'col-md-6', componentMicro: [
+            {key:'supplier', microName: 'Supplier', microType: 'text', microText: 'Masukan supplier', microClass: ''},
+            {key:'codePI', microName: 'Kode purchase invoice', microType: 'text', microText: 'Masukan purchase invoice', microClass: ''},
+            {key:'creditTerms', microName: 'Credit Terms', microType: 'text', microText: 'Masukan credit terms', microClass: ''},
+          ]},
+          {componentName: 'fieldHeader', componentTitle: '', componentClass: 'col-md-6', componentMicro: [
+            {key:'invoiceDate', microName: 'Invoice Date', microType: 'date', microText: 'Masukan tujuan pengiriman', microClass: ''},
+            {key:'dueDate', microName: 'Due Date', microType: 'date', microText: 'Masukan tujuan pengiriman', microClass: ''},
+            {key:'reffNumber', microName: 'Refference Number', microType: 'text', microText: 'Masukan refference number', microClass: ''},
+          ]},
+          {componentName: 'fieldTable', componentTitle: '', componentClass: 'col-md-12', componentMicro: [
+            {key: 'grCode',microName: 'Kode GR', microType: 'text', width:100, microText: 'Masukan Nama', microClass: ''},
+            {key: 'itemCode',microName: 'Kode Item', microType: 'text', width:100, microText: 'Masukan Nama', microClass: ''},
+            {key: 'itemName',microName: 'Nama Item', microType: 'text', width:0, microText: 'Masukan Nama', microClass: ''},
+            {key: 'uom',microName: 'UoM', microType: 'text', width:100, microText: 'Masukan Nama', microClass: ''},
+            {key: 'qty',microName: 'Qty.', microType: 'numeric', width:0, microText: 'Masukan Quantity', microClass: ''},
+            {key: 'price',microName: 'Price', microType: 'numeric', width:0, microText: 'Masukan Quantity', microClass: ''},
+            {key: 'discount',microName: 'Discount', microType: 'numeric', width:0, microText: 'Masukan Quantity', microClass: ''},
+            {key: 'amount',microName: 'Amount', microType: 'numeric', width:0, microText: 'Masukan Quantity', microClass: ''},
+          ]},
+          {
+            componentName: 'fieldNote', componentTitle: 'Catatan', componentClass: 'col-md-12', componentMicro: [
+              { key: 'note', microName: 'Note', microType: 'textarea', microText: 'Masukan Catatan Tambahan', microClass: '', microValue:'' }
+            ]
+          },
+          {
+            componentName: 'fieldTotal', componentTitle: 'Total', componentClass: 'col-md-12', componentMicro: [
+              { key: 'amount', microName: 'Sub Total', value: '', editableTotal: false, microType: 'number', microMath: 'plus', microClass: 'col-md-4' },
+              { key: 'additionalDiscount', microName: 'Diskon (Rp)', value: '', editableTotal: true, microType: 'number', microMath: 'extra-minus', microClass: 'col-md-4' },
+              { key: 'total', microName: 'Grand Total', editableTotal: false, value: '', microType: 'number', microClass: 'col-md-4' }
+            ]
+          },
+          {
+            componentName: 'routingButton', componentTitle: 'button', componentClass: 'col-md-12', componentMicro: [
+              { key: 'back', microName: 'Kembali', microRouting: 'back', microText: 'Kembali', microClass: 'btn-light' },
+              { key: 'submit', microName: '', microRouting: 'add', microText: '', microClass: 'btn-primary' }
+            ]
+          },
+        ]
+      }
+    ],
+  },
+  {
+    transTitle: 'Purchase Invoice',
+    transRouting: 'po-invoice-detail',
+    transProperties: [
+      {
+        dataName: 'menuDetail', dataMicro: [
+          {componentName: 'fieldHeader', componentTitle: '', componentClass: 'col-md-6', componentMicro: [
+            {key:'supplier', microName: 'Supplier', microType: 'text', microText: 'Masukan supplier', microClass: ''},
+            {key:'codePI', microName: 'Kode purchase invoice', microType: 'text', microText: 'Masukan purchase invoice', microClass: ''},
+            {key:'creditTerms', microName: 'Credit Terms', microType: 'text', microText: 'Masukan credit terms', microClass: ''},
+          ]},
+          {componentName: 'fieldHeader', componentTitle: '', componentClass: 'col-md-6', componentMicro: [
+            {key:'invoiceDate', microName: 'Invoice Date', microType: 'date', microText: 'Masukan tujuan pengiriman', microClass: ''},
+            {key:'dueDate', microName: 'Due Date', microType: 'date', microText: 'Masukan tujuan pengiriman', microClass: ''},
+            {key:'reffNumber', microName: 'Refference Number', microType: 'text', microText: 'Masukan refference number', microClass: ''},
+          ]},
+          {componentName: 'fieldTable', componentTitle: '', componentClass: 'col-md-12', componentMicro: [
+            {key: 'grCode',microName: 'Kode GR', microType: 'text', width:100, microText: 'Masukan Nama', microClass: ''},
+            {key: 'itemCode',microName: 'Kode Item', microType: 'text', width:100, microText: 'Masukan Nama', microClass: ''},
+            {key: 'itemName',microName: 'Nama Item', microType: 'text', width:0, microText: 'Masukan Nama', microClass: ''},
+            {key: 'uom',microName: 'UoM', microType: 'text', width:100, microText: 'Masukan Nama', microClass: ''},
+            {key: 'qty',microName: 'Qty.', microType: 'numeric', width:0, microText: 'Masukan Quantity', microClass: ''},
+            {key: 'price',microName: 'Price', microType: 'numeric', width:0, microText: 'Masukan Quantity', microClass: ''},
+            {key: 'discount',microName: 'Discount', microType: 'numeric', width:0, microText: 'Masukan Quantity', microClass: ''},
+            {key: 'amount',microName: 'Amount', microType: 'numeric', width:0, microText: 'Masukan Quantity', microClass: ''},
+          ]},
+          {
+            componentName: 'fieldNote', componentTitle: 'Catatan', componentClass: 'col-md-12', componentMicro: [
+              { key: 'note', microName: 'Note', microType: 'textarea', microText: 'Masukan Catatan Tambahan', microClass: '', microValue:'' }
+            ]
+          },
+          {
+            componentName: 'fieldTotal', componentTitle: 'Total', componentClass: 'col-md-12', componentMicro: [
+              { key: 'amount', microName: 'Sub Total', value: '', editableTotal: false, microType: 'number', microMath: 'plus', microClass: 'col-md-4' },
+              { key: 'additionalDiscount', microName: 'Diskon (Rp)', value: 1000, editableTotal: true, microType: 'number', microMath: 'extra-minus', microClass: 'col-md-4' },
+              { key: 'total', microName: 'Grand Total', editableTotal: false, value: '', microType: 'number', microClass: 'col-md-4' }
+            ]
+          },
+          {
+            componentName: 'routingButton', componentTitle: 'button', componentClass: 'col-md-12', componentMicro: [
+              { key: 'back', microName: 'Kembali', microRouting: 'back', microText: 'Kembali', microClass: 'btn-light' },
+              { key: 'submit', microName: '', microRouting: 'add', microText: '', microClass: 'btn-primary' }
+            ]
+          },
+        ]
+      }
+    ],
+  },
+  {
+    transTitle: 'Purchase Invoice',
+    transRouting: 'po-invoice-edit',
+    transProperties: [
+      {
+        dataName: 'menuEdit', dataMicro: [
+          {componentName: 'fieldHeader', componentTitle: '', componentClass: 'col-md-6', componentMicro: [
+            {key:'supplier', microName: 'Supplier', microType: 'text', microText: 'Masukan supplier', microClass: ''},
+            {key:'codePI', microName: 'Kode purchase invoice', microType: 'text', microText: 'Masukan purchase invoice', microClass: ''},
+            {key:'creditTerms', microName: 'Credit Terms', microType: 'text', microText: 'Masukan credit terms', microClass: ''},
+          ]},
+          {componentName: 'fieldHeader', componentTitle: '', componentClass: 'col-md-6', componentMicro: [
+            {key:'invoiceDate', microName: 'Invoice Date', microType: 'date', microText: 'Masukan tujuan pengiriman', microClass: ''},
+            {key:'dueDate', microName: 'Due Date', microType: 'date', microText: 'Masukan tujuan pengiriman', microClass: ''},
+            {key:'reffNumber', microName: 'Refference Number', microType: 'text', microText: 'Masukan refference number', microClass: ''},
+          ]},
+          {componentName: 'fieldTable', componentTitle: '', componentClass: 'col-md-12', componentMicro: [
+            {key: 'grCode',microName: 'Kode GR', microType: 'text', width:100, microText: 'Masukan Nama', microClass: ''},
+            {key: 'itemCode',microName: 'Kode Item', microType: 'text', width:100, microText: 'Masukan Nama', microClass: ''},
+            {key: 'itemName',microName: 'Nama Item', microType: 'text', width:0, microText: 'Masukan Nama', microClass: ''},
+            {key: 'uom',microName: 'UoM', microType: 'text', width:100, microText: 'Masukan Nama', microClass: ''},
+            {key: 'qty',microName: 'Qty.', microType: 'numeric', width:0, microText: 'Masukan Quantity', microClass: ''},
+            {key: 'price',microName: 'Price', microType: 'numeric', width:0, microText: 'Masukan Quantity', microClass: ''},
+            {key: 'discount',microName: 'Discount', microType: 'numeric', width:0, microText: 'Masukan Quantity', microClass: ''},
+            {key: 'amount',microName: 'Amount', microType: 'numeric', width:0, microText: 'Masukan Quantity', microClass: ''},
+          ]},
+          {
+            componentName: 'fieldNote', componentTitle: 'Catatan', componentClass: 'col-md-12', componentMicro: [
+              { key: 'note', microName: 'Note', microType: 'textarea', microText: 'Masukan Catatan Tambahan', microClass: '', microValue:'' }
+            ]
+          },
+          {
+            componentName: 'fieldTotal', componentTitle: 'Total', componentClass: 'col-md-12', componentMicro: [
+              { key: 'amount', microName: 'Sub Total', value: '', editableTotal: false, microType: 'number', microMath: 'plus', microClass: 'col-md-4' },
+              { key: 'additionalDiscount', microName: 'Diskon (Rp)', value: 1000, editableTotal: true, microType: 'number', microMath: 'extra-minus', microClass: 'col-md-4' },
+              { key: 'total', microName: 'Grand Total', editableTotal: false, value: '', microType: 'number', microClass: 'col-md-4' }
+            ]
+          },
+          {
+            componentName: 'routingButton', componentTitle: 'button', componentClass: 'col-md-12', componentMicro: [
+              { key: 'back', microName: 'Kembali', microRouting: 'back', microText: 'Kembali', microClass: 'btn-light' },
+              { key: 'submit', microName: '', microRouting: 'add', microText: '', microClass: 'btn-primary' }
+            ]
+          },
+        ]
+      }
+    ],
+  },
+  // Purchase Payment
+  {
+    transTitle: 'Purchase Payment',
+    transRouting: 'po-payment',
+    transProperties: [
+      {
+        dataName: 'menuList', dataMicro: [
+          {key: 'supplier',microName: 'Supplier', microType: 'text', width:0, microText: 'Masukan supplier', microClass: ''},
+          {key: 'codePP',microName: 'Kode PP', microType: 'text', width:110, microText: 'Masukan kode purchase invoice', microClass: ''},
+          {key: 'createDate',microName: 'Create Date', microType: 'date', width:0, microText: 'Masukan Kode', microFormat: 'DD-MM-YYYY', microClass: ''},
+          {key: 'refNumber',microName: 'Reff. Number', microType: 'text', width:0, microText: 'Masukan reference number', microClass: ''},
+          {key: 'payMethod',microName: 'Payment Method', microType: 'text', width:125, microText: 'Masukan Spesifikasi', microClass: ''},
+          {key: 'noCheck',microName: 'No. Check', microType: 'text', width:110, microText: 'Masukan Spesifikasi', microClass: ''},
+          {key: 'status',microName: 'Status', microType: 'text', width:110, microText: 'Masukan Spesifikasi', microClass: ''},
+          { key: 'opsi', microName: '', microType: 'dropdown', width: 0, microText: '', microFormat: '', microClass: '' },
+        ]
+      },
+      {
+        dataName: 'routingButton', dataTitle: 'button', dataClass: 'col-md-12', dataMicro: [
+          { key: 'add', microName: '', microRouting: 'add', microText: '', microClass: 'btn-primary' }
+        ]
+      }
+    ],
+    transData: [
+      {
+        key: '001',
+        header: [
+          { codePP: 'PP00001', payMethod: 'BRI - Pusat', noCheck: 'CHK0001', createDate: '2023-12-01', reffNumber: '-', supplier: 'Yamaaf', status: 'Pending' }
+        ],
+        table: [                  
+          {invoiceDate: '2023-12-01', invoiceCode: 'PO0001', desc: 'KDS001', price: 100000, payment: true, amount: 500000},
+          {invoiceDate: '2023-12-01', invoiceCode: 'PO0002', desc: 'KDS001', price: 100000, payment: false, amount: 0},
+          {invoiceDate: '2023-12-01', invoiceCode: 'PO0003', desc: 'KDS001', price: 100000, payment: true, amount: 1000000}
+        ],
+        footer: [
+          { note: 'Nggak Ada', additionalDiscount: 100000}
+        ]
+      },
+      {
+        key: '001',
+        header: [
+          { codePR:'PR00001', codePO: 'PO00001', dateNeed: '2023-12-01', reqUser: 10, supplier: 'Yamaaf', unitCost: 10000000, status: 'Pending' }
+        ],
+        table: [                
+          {tableDate: '09/01/2023', tableName: 'azam', tableDesc: 'bacot', tableReff: 'ABC123', tableCredit: 30000, tableDebit: 10000},
+          {tableDate: '09/01/2023', tableName: 'azam', tableDesc: 'bacot', tableReff: 'ABC123', tableCredit: 20000, tableDebit: 10000}
+        ],
+        footer: [
+          { note: 'Nggak Ada'}
+        ]
+      },
+    ]
+  },
+  {
+    transTitle: 'Purchase Payment',
+    transRouting: 'po-payment-add',
+    transProperties: [
+      {
+        dataName: 'menuAdd', dataMicro: [
+          {componentName: 'fieldHeader', componentTitle: '', componentClass: 'col-md-6', componentMicro: [
+            {key:'supplier', microName: 'supplier', microType: 'multiselect', microOptions: [], microClass: ''},
+            {key:'createDate', microName: 'Create Date', microType: 'date', microText: 'Masukan tujuan pengiriman', microClass: ''},
+          ]},
+          {componentName: 'fieldHeader', componentTitle: '', componentClass: 'col-md-6', componentMicro: [
+            {key:'payMethod', microName: 'Payment Method', microType: 'multiselect', microOptions: [], microClass: ''},
+            {key:'reffNumber', microName: 'Reff. Number', microType: 'text', microText: 'Masukan refference number', microClass: ''},
+            {key:'noCheck', microName: 'No. Check/BG', microType: 'text', microText: 'Masukan nomor check', microClass: ''},
+          ]},
+          {componentName: 'fieldTable', componentTitle: '', componentClass: 'col-md-12', componentMicro: [
+            {key:'invoiceDate', microName: 'Tgl. Invoice', microType: 'date', width:100, microText: '', microFormat: 'DD-MM-YYYY', microClass: ''},
+            {key: 'invoiceCode',microName: 'Kode Invoice', microType: 'text', width:100, microText: 'Masukan Nama', microClass: ''},
+            {key: 'desc',microName: 'Deskripsi', microType: 'text', width:0, microText: 'Masukan Nama', microClass: ''},
+            {key: 'price',microName: 'Total Harga', microType: 'numeric', width:0, microText: 'Masukan Quantity', microClass: ''},
+            {key: 'payment',microName: 'Payment', microType: 'checkbox', width:75, microText: 'Masukan Nama', microClass: 'd-flex justify-content-center align-items-center'},
+            {key: 'amount',microName: 'Total Dibayar', microType: 'numeric', width:0, microText: 'Masukan Quantity', microClass: ''},
+          ]},
+          {
+            componentName: 'fieldNote', componentTitle: 'Catatan', componentClass: 'col-md-12', componentMicro: [
+              { key: 'note', microName: 'Note', microType: 'textarea', microText: 'Masukan Catatan Tambahan', microClass: '', microValue:'' }
+            ]
+          },
+          {
+            componentName: 'fieldTotal', componentTitle: 'Total', componentClass: 'col-md-12', componentMicro: [
+              { key: 'amount', microName: 'Sub Total', value: '', editableTotal: false, microType: 'text', microMath: 'plus', microClass: 'col-md-4' },
+              { key: 'additionalDiscount', microName: 'Diskon (Rp)', value: '', editableTotal: true, microType: 'number', microMath: 'extra-minus', microClass: 'col-md-4' },
+              { key: 'total', microName: 'Grand Total', editableTotal: false, value: '', microType: 'text', microClass: 'col-md-4' }
+            ]
+          },
+          {
+            componentName: 'routingButton', componentTitle: 'button', componentClass: 'col-md-12', componentMicro: [
+              { key: 'back', microName: 'Kembali', microRouting: 'back', microText: 'Kembali', microClass: 'btn-light' },
+              { key: 'submit', microName: '', microRouting: 'add', microText: '', microClass: 'btn-primary' }
+            ]
+          },
+        ]
+      }
+    ],
+  },
+  {
+    transTitle: 'Purchase Payment',
+    transRouting: 'po-payment-detail',
+    transProperties: [
+      {
+        dataName: 'menuDetail', dataMicro: [
+          {componentName: 'fieldHeader', componentTitle: '', componentClass: 'col-md-6', componentMicro: [
+            {key:'supplier', microName: 'Supplier', microType: 'text', microText: 'Masukan supplier', microClass: ''},
+            {key:'codePP', microName: 'Kode Purchase Payment', microType: 'text', microText: 'Masukan purchase payment', microClass: ''},
+            {key:'createDate', microName: 'Create Date', microType: 'date', microText: 'Masukan tujuan pengiriman', microClass: ''},
+          ]},
+          {componentName: 'fieldHeader', componentTitle: '', componentClass: 'col-md-6', componentMicro: [
+            {key:'reffNumber', microName: 'Refference Number', microType: 'text', microText: 'Masukan refference number', microClass: ''},
+            {key:'payMethod', microName: 'Payment Method', microType: 'text', microText: 'Masukan payment method', microClass: ''},
+            {key:'noCheck', microName: 'No. Check/BG', microType: 'text', microText: 'Masukan nomor check', microClass: ''},
+          ]},
+          {componentName: 'fieldTable', componentTitle: '', componentClass: 'col-md-12', componentMicro: [
+            {key:'invoiceDate', microName: 'Tgl. Invoice', microType: 'date', width:100, microText: '', microFormat: 'DD-MM-YYYY', microClass: ''},
+            {key: 'invoiceCode',microName: 'Kode Invoice', microType: 'text', width:100, microText: 'Masukan Nama', microClass: ''},
+            {key: 'desc',microName: 'Deskripsi', microType: 'text', width:0, microText: 'Masukan Nama', microClass: ''},
+            {key: 'price',microName: 'Price', microType: 'numeric', width:0, microText: 'Masukan Quantity', microClass: ''},
+            {key: 'payment',microName: 'Payment', microType: 'checkbox', width:75, microText: 'Masukan Nama', microClass: 'd-flex justify-content-center align-items-center'},
+            {key: 'amount',microName: 'Amount', microType: 'numeric', width:0, microText: 'Masukan Quantity', microClass: ''},
+          ]},
+          {
+            componentName: 'fieldNote', componentTitle: 'Catatan', componentClass: 'col-md-12', componentMicro: [
+              { key: 'note', microName: 'Note', microType: 'textarea', microText: 'Masukan Catatan Tambahan', microClass: '', microValue:'' }
+            ]
+          },
+          {
+            componentName: 'fieldTotal', componentTitle: 'Total', componentClass: 'col-md-12', componentMicro: [
+              { key: 'amount', microName: 'Sub Total', value: '', editableTotal: false, microType: 'number', microMath: 'plus', microClass: 'col-md-4' },
+              { key: 'additionalDiscount', microName: 'Diskon (Rp)', value: '', editableTotal: true, microType: 'number', microMath: 'extra-minus', microClass: 'col-md-4' },
+              { key: 'total', microName: 'Grand Total', editableTotal: false, value: '', microType: 'number', microClass: 'col-md-4' }
+            ]
+          },
+          {
+            componentName: 'routingButton', componentTitle: 'button', componentClass: 'col-md-12', componentMicro: [
+              { key: 'back', microName: 'Kembali', microRouting: 'back', microText: 'Kembali', microClass: 'btn-light' },
+              { key: 'submit', microName: '', microRouting: 'add', microText: '', microClass: 'btn-primary' }
+            ]
+          },
+        ]
+      }
+    ],
+  },
+  {
+    transTitle: 'Purchase Payment',
+    transRouting: 'po-payment-edit',
+    transProperties: [
+      {
+        dataName: 'menuEdit', dataMicro: [
+          {componentName: 'fieldHeader', componentTitle: '', componentClass: 'col-md-6', componentMicro: [
+            {key:'supplier', microName: 'Supplier', microType: 'text', microText: 'Masukan supplier', microClass: ''},
+            {key:'codePP', microName: 'Kode Purchase Payment', microType: 'text', microText: 'Masukan purchase payment', microClass: ''},
+            {key:'createDate', microName: 'Create Date', microType: 'date', microText: 'Masukan tujuan pengiriman', microClass: ''},
+          ]},
+          {componentName: 'fieldHeader', componentTitle: '', componentClass: 'col-md-6', componentMicro: [
+            {key:'reffNumber', microName: 'Refference Number', microType: 'text', microText: 'Masukan refference number', microClass: ''},
+            {key:'payMethod', microName: 'Payment Method', microType: 'text', microText: 'Masukan payment method', microClass: ''},
+            {key:'noCheck', microName: 'No. Check/BG', microType: 'text', microText: 'Masukan nomor check', microClass: ''},
+          ]},
+          {componentName: 'fieldTable', componentTitle: '', componentClass: 'col-md-12', componentMicro: [
+            {key:'invoiceDate', microName: 'Tgl. Invoice', microType: 'date', width:100, microText: '', microFormat: 'DD-MM-YYYY', microClass: ''},
+            {key: 'invoiceCode',microName: 'Kode Invoice', microType: 'text', width:100, microText: 'Masukan Nama', microClass: ''},
+            {key: 'desc',microName: 'Deskripsi', microType: 'text', width:0, microText: 'Masukan Nama', microClass: ''},
+            {key: 'price',microName: 'Price', microType: 'numeric', width:0, microText: 'Masukan Quantity', microClass: ''},
+            {key: 'payment',microName: 'Payment', microType: 'checkbox', width:75, microText: 'Masukan Nama', microClass: 'd-flex justify-content-center align-items-center'},
+            {key: 'amount',microName: 'Amount', microType: 'numeric', width:0, microText: 'Masukan Quantity', microClass: ''},
+          ]},
+          {
+            componentName: 'fieldNote', componentTitle: 'Catatan', componentClass: 'col-md-12', componentMicro: [
+              { key: 'note', microName: 'Note', microType: 'textarea', microText: 'Masukan Catatan Tambahan', microClass: '', microValue:'' }
+            ]
+          },
+          {
+            componentName: 'fieldTotal', componentTitle: 'Total', componentClass: 'col-md-12', componentMicro: [
+              { key: 'amount', microName: 'Sub Total', value: '', editableTotal: false, microType: 'number', microMath: 'plus', microClass: 'col-md-4' },
+              { key: 'additionalDiscount', microName: 'Diskon (Rp)', value: '', editableTotal: true, microType: 'number', microMath: 'extra-minus', microClass: 'col-md-4' },
+              { key: 'total', microName: 'Grand Total', editableTotal: false, value: '', microType: 'number', microClass: 'col-md-4' }
+            ]
+          },
+          {
+            componentName: 'routingButton', componentTitle: 'button', componentClass: 'col-md-12', componentMicro: [
+              { key: 'back', microName: 'Kembali', microRouting: 'back', microText: 'Kembali', microClass: 'btn-light' },
+              { key: 'submit', microName: '', microRouting: 'add', microText: '', microClass: 'btn-primary' }
+            ]
+          },
+        ]
+      }
+    ],
+  },
+  // Kasbank
+  {
+    transTitle: 'Kas & Bank',
+    transRouting: 'kasbank',
+    transProperties: [
+      {
+        dataName: 'menuList', dataMicro: [
+          {key: 'transCoaCode',microName: 'Kode COA', microType: 'text', width:110, microText: 'Masukan Nama', microClass: ''},
+          {key: 'transCoaName',microName: 'Nama COA', microType: 'text', width:0, microText: 'Masukan Nama', microClass: ''},
+          {key: 'code',microName: 'Kode Voucher', microType: 'text', width:110, microText: 'Masukan Nama', microClass: ''},
+          {key: 'user',microName: 'PIC', microType: 'text', width:100, microText: 'Masukan Nama', microClass: ''},
+          {key: 'transDescription',microName: 'Desc', microType: 'text', width:0, microText: 'Masukan Nama', microClass: ''},
+          {key: 'transEffDate',microName: 'Trans. Date', microType: 'date', width:0, microText: 'Masukan Kode', microFormat: 'DD-MM-YYYY', microClass: ''},
+          {key: 'transType',microName: 'Tipe', microType: 'text', width:50, microText: 'Masukan Nama', microClass: ''},
+          {key: 'transAmount',microName: 'Saldo', microType: 'numeric', width:100, microText: 'Masukan Spesifikasi', microClass: ''},
+          {key: 'opsi', microName: '', microType: 'dropdown', width: 0, microText: '', microFormat: '', microClass: '' },
+        ]
+      },
+      {
+        dataName: 'routingButton', dataTitle: 'button', dataClass: 'col-md-12', dataMicro: [
+          { key: 'add', microName: '', microRouting: 'add', microText: '', microClass: 'btn-primary' }
+        ]
+      }
+    ],
+    transData: [
+      {
+        key: '001',
+        header: [
+          { key: 'H001', type:'in', jenis: 'cash', code: 'KB000001', date: '2023-12-01', name: 'BRI - Pusat', voucher: 'qwerty123', saldo: 10000000, status: 'aktif' }
+        ],
+        table: [
+          { kodeCOA: 'COA0001', namaCOA: 'COA pertama', costCenter: '-', uraian: 'tidak ada', amount: 1000000 }
+        ],
+        footer: [
+          { note: 'Nggak Ada' }
+        ]
+      },
+    ]
+  },
+  {
+    transTitle: 'Kas & Bank',
+    transRouting: 'kasbank-add',
+    transProperties: [
+      {
+        dataName: 'menuAdd', dataMicro: [
+          {componentName: 'fieldHeader', componentTitle: '', componentClass: 'col-md-6', componentMicro: [
+            {key:'type', microName: 'Tipe', microType: 'select', microOptions: ['pemasukan', 'pengeluaran'], microClass: '', isDisabled: false},
+            {key:'kasbankCode', microName: 'Kode Kasbank', microType: 'multiselect', microOptions: [], optionLabel: 'code&name', microClass: '', isDisabled: false},
+            {key: 'transEffDate', microName: 'Trans. Date', microType: 'date', microText: 'Masukan tanggal order', microClass: '', isDisabled: false},
+          ]},
+          {componentName: 'fieldHeader', componentTitle: '', componentClass: 'col-md-6', componentMicro: [
+            {key:'transNo', microName: 'Kode Voucher', microType: 'text', microText: 'Masukan kode kasbank', microClass: '', isDisabled: true},
+            {key:'transAmount', microName: 'Saldo Saat Ini', microType: 'text', microText: 'Masukan Saldo Awal', microClass: '', isDisabled: true},
+          ]},
+          {
+            componentName: 'fieldTable', componentTitle: '', componentClass: 'col-md-12', componentMicro: [
+              { key: 'Code', microName: 'Kode COA', microType: 'autocomplete', readOnly: false, width: 125, microOption: [], microClass: '', },
+              { key: 'Name', microName: 'Nama COA', microType: 'autocomplete', width: 200, readOnly: false, microOption: [], microClass: '', },
+              { key: 'transCostCenter', microName: 'Cost Center', microType: 'text', width: 0, readOnly: false, microClass: '', },
+              { key: 'transReff', microName: 'No. Reff', microType: 'text', width: 0, readOnly: false, microClass: '', },
+              { key: 'transDescription', microName: 'Uraian', microType: 'text', width: 0, readOnly: false, microClass: '', },
+              // { key: 'Discount', microName: 'Diskon (%)', microType: 'numeric', width: 100, logic: '%', microClass: '', },
+              { key: 'transAmount', microName: 'Amount', microType: 'numeric', width: 125, readOnly: false, microClass: '', },
+              // { key: 'Value', microName: 'Total', microType: 'renderer', width: 125, readOnly: true, microClass: '', },
+            ]
+          },
+          {
+            componentName: 'fieldNote', componentTitle: 'Catatan', componentClass: 'col-md-12', componentMicro: [
+              { key: 'transNotes', microName: 'Note', microType: 'textarea', microText: 'Masukan Catatan Tambahan', microClass: '', microValue:'' }
+            ]
+          },
+          {
+            componentName: 'fieldTotal', componentTitle: 'Total', componentClass: 'col-md-12', componentMicro: [
+              { key: 'transAmount', microName: 'Total Amount', value: '', editableTotal: false, microType: 'text', microMath: 'plus', microClass: 'col-md-4' },
+              // { key: 'diskon', microName: 'Diskon (%)', value: '', editableTotal: true, fixedValue: false, microType: 'number', microMath: 'percent-minus', microClass: 'col-md-4' },
+              { key: 'total', microName: 'Saldo Akhir', editableTotal: false, value: '', microType: 'text', microClass: 'col-md-4' }
+            ]
+          },
+          {
+            componentName: 'routingButton', componentTitle: 'button', componentClass: 'col-md-12', componentMicro: [
+              { key: 'back', microName: 'Kembali', microRouting: 'back', microText: 'Kembali', microClass: 'btn-light' },
+              { key: 'submit', microName: '', microRouting: 'add', microText: '', microClass: 'btn-primary' }
+            ]
+          },
+        ]
+      }
+    ],
+  },
+  {
+    transTitle: 'Kas & Bank',
+    transRouting: 'kasbank-detail',
+    transProperties: [
+      {
+        dataName: 'menuDetail', dataMicro: [
+          {componentName: 'fieldHeader', componentTitle: '', componentClass: 'col-md-6', componentMicro: [
+            {key:'type', microName: 'Tipe', microType: 'select', microOptions: ['in', 'out'], microClass: '', isDisabled: false},
+            {key:'kasbankCode', microName: 'Kode Kasbank', microType: 'multiselect', microOptions: [], optionLabel: 'code&name', microClass: '', isDisabled: false},
+            {key: 'tgl', microName: 'Trans. Date', microType: 'date', microText: 'Masukan tanggal order', microClass: '', isDisabled: false},
+          ]},
+          {componentName: 'fieldHeader', componentTitle: '', componentClass: 'col-md-6', componentMicro: [
+            {key:'voucherCode', microName: 'Kode Voucher', microType: 'text', microText: 'Masukan kode kasbank', microClass: '', isDisabled: true},
+            {key:'transAmount', microName: 'Saldo Awal', microType: 'text', microText: 'Masukan Saldo Awal', microClass: '', isDisabled: true},
+          ]},
+          {
+            componentName: 'fieldTable', componentTitle: '', componentClass: 'col-md-12', componentMicro: [
+              { key: 'transCoaCode', microName: 'Kode COA', microType: 'dropdown', readOnly: false, width: 125, microOption: [], microClass: '', },
+              { key: 'transCoaName', microName: 'Nama COA', microType: 'dropdown', width: 200, readOnly: false, microOption: [], microClass: '', },
+              { key: 'transCostCenter', microName: 'Cost Center', microType: 'text', width: 0, readOnly: false, microClass: '', },
+              { key: 'transReff', microName: 'No. Reff', microType: 'text', width: 0, readOnly: false, microClass: '', },
+              { key: 'transDescription', microName: 'Uraian', microType: 'text', width: 0, readOnly: false, microClass: '', },
+              // { key: 'Discount', microName: 'Diskon (%)', microType: 'numeric', width: 100, logic: '%', microClass: '', },
+              { key: 'transAmount', microName: 'Amount', microType: 'numeric', width: 125, readOnly: false, microClass: '', },
+              // { key: 'Value', microName: 'Total', microType: 'renderer', width: 125, readOnly: true, microClass: '', },
+            ]
+          },
+          {
+            componentName: 'fieldNote', componentTitle: 'Catatan', componentClass: 'col-md-12', componentMicro: [
+              { key: 'note', microName: 'Note', microType: 'textarea', microText: 'Masukan Catatan Tambahan', microClass: '', microValue:'' }
+            ]
+          },
+          {
+            componentName: 'fieldTotal', componentTitle: 'Total', componentClass: 'col-md-12', componentMicro: [
+              { key: 'transAmount', microName: 'Total Amount', value: '', editableTotal: false, microType: 'text', microMath: 'plus', microClass: 'col-md-4' },
+              // { key: 'diskon', microName: 'Diskon (%)', value: '', editableTotal: true, fixedValue: false, microType: 'number', microMath: 'percent-minus', microClass: 'col-md-4' },
+              { key: 'total', microName: 'Saldo Akhir', editableTotal: false, value: '', microType: 'text', microClass: 'col-md-4' }
+            ]
+          },
+          {
+            componentName: 'routingButton', componentTitle: 'button', componentClass: 'col-md-12', componentMicro: [
+              { key: 'back', microName: 'Kembali', microRouting: 'back', microText: 'Kembali', microClass: 'btn-light' },
+              { key: 'submit', microName: '', microRouting: 'add', microText: '', microClass: 'btn-primary' }
+            ]
+          },
+        ]
+      }
+    ],
+  },
+  {
+    transTitle: 'Kas & Bank',
+    transRouting: 'kasbank-edit',
+    transProperties: [
+      {
+        dataName: 'menuEdit', dataMicro: [
+          {componentName: 'fieldHeader', componentTitle: '', componentClass: 'col-md-6', componentMicro: [
+            {key:'type', microName: 'Tipe', microType: 'text', microText: 'In/out', microClass: ' col-6'},
+            {key:'jenis', microName: 'Jenis', microType: 'text', microText: 'Jenis Kasbank', microClass: ' col-6'},
+            {key:'code', microName: 'Kode Kasbank', microType: 'text', microText: 'Masukan kode kasbank', microClass: ''},
+            {key:'name', microName: 'Nama Kasbank', microType: 'text', microText: 'Masukan Nama Kasbank', microClass: ''},
+          ]},
+          {componentName: 'fieldHeader', componentTitle: '', componentClass: 'col-md-6', componentMicro: [
+            {key:'voucher', microName: 'Kode Voucher', microType: 'text', microText: 'Masukan kode kasbank', microClass: ''},
+            {key: 'date', microName: 'Tanggal Dibuat', microType: 'date', microText: 'Masukan tanggal order', microClass: ''},
+            {key:'saldo', microName: 'Saldo', microType: 'number', microText: 'Masukan Saldo Awal', microClass: ''},
+          ]},
+          {
+            componentName: 'fieldTable', componentTitle: '', componentClass: 'col-md-12', componentMicro: [
+              { key: 'kodeCOA', microName: 'Kode COA', microType: 'text', width: 100, microText: 'Masukan Kode', microFormat: 'DD-MM-YYYY', microClass: '', },
+              { key: 'namaCOA', microName: 'Nama COA', microType: 'text', width: 0, microText: 'Masukan Nama', microClass: '', },
+              { key: 'costCenter', microName: 'Cost Center', microType: 'text', width: 0, microText: 'Masukan Spesifikasi', microClass: '', },
+              { key: 'uraian', microName: 'Uraian', microType: 'text', width: 0, microText: 'Masukan Quantity', microClass: '', },
+              { key: 'amount', microName: 'Amount', microType: 'numeric', width: 0, microText: 'Masukan Quantity', microClass: '', },
+            ]
+          },
+          {
+            componentName: 'fieldNote', componentTitle: 'Catatan', componentClass: 'col-md-12', componentMicro: [
+              { key: 'note', microName: 'Note', microType: 'textarea', microText: 'Masukan Catatan Tambahan', microClass: '', microValue:'' }
+            ]
+          },
+          {
+            componentName: 'fieldTotal', componentTitle: 'Total', componentClass: 'col-md-12', componentMicro: [
+              { key: 'amount', microName: 'Total Amount', value: '', editableTotal: false, microType: 'number', microMath: 'plus', microClass: 'col-md-4' },
+              { key: 'total', microName: 'Saldo', editableTotal: false, value: '', microType: 'number', microClass: 'col-md-4' }
+            ]
+          },
+          {
+            componentName: 'routingButton', componentTitle: 'button', componentClass: 'col-md-12', componentMicro: [
+              { key: 'back', microName: 'Kembali', microRouting: 'back', microText: 'Kembali', microClass: 'btn-light' },
+              { key: 'submit', microName: '', microRouting: 'add', microText: '', microClass: 'btn-primary' }
+            ]
+          },
+        ]
+      }
+    ],
+  },
+  {
+    transTitle: 'Kas & Bank',
+    transRouting: 'formula-add',
+    transProperties: [
+      {
+        dataName: 'menuAdd', dataMicro: [
+          {componentName: 'fieldHeader', componentTitle: '', componentClass: 'col-md-6', componentMicro: [
+            {key:'transNo', microName: 'Kode Item', microType: 'multiselect', microOptions: [], optionLabel: 'code&name', microClass: '', isDisabled: false},
+          ]},
+          {componentName: 'fieldHeader', componentTitle: '', componentClass: 'col-md-6', componentMicro: [
+            {key:'transReff', microName: 'Nama Formula', microType: 'text', microText: 'Masukan Nama Formula', microClass: '', isDisabled: false},
+          ]},
+          {
+            componentName: 'fieldTable', componentTitle: '', componentClass: 'col-md-12', componentMicro: [
+              { key: 'Code', microName: 'Kode Item', microType: 'dropdown', readOnly: false, width: 125, microOption: [], microClass: '', },
+              { key: 'Name', microName: 'Nama Item', microType: 'dropdown', width: 200, readOnly: false, microOption: [], microClass: '', },
+              { key: 'Name', microName: 'Deskripsi', microType: 'text', width: 200, readOnly: true, microOption: [], microClass: '', },
+              { key: 'uraian', microName: 'UoM', microType: 'text', width: 0, readOnly: false, microClass: '', },
+              { key: 'qty', microName: 'Qty', microType: 'numeric', width: 125, readOnly: false, microClass: '', },
+              { key: 'Amount', microName: 'Standar Amount', microType: 'numeric', width: 125, readOnly: false, microClass: '', },
+            ]
+          },
+          {
+            componentName: 'fieldNote', componentTitle: 'Catatan', componentClass: 'col-md-12', componentMicro: [
+              { key: 'transNotes', microName: 'Note', microType: 'textarea', microText: 'Masukan Catatan Tambahan', microClass: '', microValue:'' }
+            ]
+          },
+          {
+            componentName: 'fieldTotal', componentTitle: 'Total', componentClass: 'col-md-12', componentMicro: [
+              { key: 'total', microName: 'Saldo Akhir', editableTotal: false, value: '', microType: 'number', microClass: 'col-md- d-none' }
+            ]
+          },
+          {
+            componentName: 'routingButton', componentTitle: 'button', componentClass: 'col-md-12', componentMicro: [
+              { key: 'back', microName: 'Kembali', microRouting: 'back', microText: 'Kembali', microClass: 'btn-light' },
+              { key: 'submit', microName: '', microRouting: 'add', microText: '', microClass: 'btn-primary' }
+            ]
+          },
+        ]
+      }
+    ],
+  },
+  // Kasbank V2
+  {
+    transTitle: 'Kas & Bank V2',
+    transRouting: 'kasbank-v2',
+    transProperties: [
+      {
+        dataName: 'menuList', dataMicro: [
+          {key: 'code',microName: 'Kode Kasbank', microType: 'text', width:110, microText: 'Masukan Nama', microClass: ''},
+          {key: 'jenis',microName: 'Jenis', microType: 'text', width:50, microText: 'Masukan Nama', microClass: ''},
+          {key: 'name',microName: 'Nama Kasbank', microType: 'text', width:0, microText: 'Masukan Nama', microClass: ''},
+          {key: 'date',microName: 'Tgl. Transaksi', microType: 'date', width:0, microText: 'Masukan Kode', microFormat: 'DD-MM-YYYY', microClass: ''},
+          {key: 'voucher',microName: 'Kode Voucher', microType: 'text', width:110, microText: 'Masukan Nama', microClass: ''},
+          {key: 'saldo',microName: 'Saldo', microType: 'numeric', width:0, microText: 'Masukan Spesifikasi', microClass: ''},
+          {key: 'status',microName: 'Status', microType: 'text', width:100, microText: 'Masukan Spesifikasi', microClass: ''},
+          { key: 'opsi', microName: '', microType: 'dropdown', width: 0, microText: '', microFormat: '', microClass: '' },
+        ]
+      },
+      {
+        dataName: 'headerReport', dataMicro: [
+          {key: 'saldoAwal',microName: 'Saldo Awal', microType: 'text', microCurrency: 'Rp.', value: 0, microFunction: '', microCondition: '', microText: 'Masukan Nama', microClass: ''},
+          {key: 'saldoIn',microName: 'Transaksi Masuk', microType: 'text', microCurrency: 'Rp.', value: 0, microFunction: '', microCondition: 'kasbankJenis === "Cash"', microText: 'Masukan Nama', microClass: ''},
+          {key: 'saldoOut',microName: 'Transaksi Keluar', microType: 'text', microCurrency: 'Rp.', value: 0, microFunction: '', microCondition: 'kasbankJenis === "Cash"', microText: 'Masukan Nama', microClass: ''},
+          {key: 'saldoAkhir',microName: 'Saldo Akhir', microType: 'text', microCurrency: 'Rp.', value: 0, microFunction: '', microCondition: 'kasbankJenis === "Bank"', microText: 'Masukan Nama', microClass: ''},
+        ]
+      },
+      {
+        dataName: 'headerReportHarian', dataMicro: [
+          {key: 'saldoAwal',microName: 'Saldo Awal', microType: 'text', microCurrency: 'Rp.', value: 0, microFunction: '', microCondition: '', microText: 'Masukan Nama', microClass: ''},
+          {key: 'saldoIn',microName: 'Transaksi Masuk', microType: 'text', microCurrency: 'Rp.', value: 0, microFunction: '', microCondition: 'kasbankJenis === "Cash"', microText: 'Masukan Nama', microClass: ''},
+          {key: 'saldoOut',microName: 'Transaksi Keluar', microType: 'text', microCurrency: 'Rp.', value: 0, microFunction: '', microCondition: 'kasbankJenis === "Cash"', microText: 'Masukan Nama', microClass: ''},
+          {key: 'saldoAkhir',microName: 'Saldo Akhir', microType: 'text', microCurrency: 'Rp.', value: 0, microFunction: '', microCondition: 'kasbankJenis === "Bank"', microText: 'Masukan Nama', microClass: ''},
+        ]
+      },
+      {
+        dataName: 'menuListReport', dataMicro: [
+          {key: 'transNo',microName: 'Kode Voucher', microType: 'text', width:110, microText: 'Masukan Nama', microClass: ''},
+          {key: 'coaCode',microName: 'Kode COA', microType: 'text', width:110, microText: 'Masukan Nama', microClass: ''},
+          {key: 'coaName',microName: 'Nama COA', microType: 'text', width:0, microText: 'Masukan Nama', microClass: ''},
+          {key: 'transDescription',microName: 'Deskripsi', microType: 'text', width:0, microText: 'Masukan Nama', microClass: ''},
+          {key: 'transEffDate',microName: 'Tgl. Transaksi', microType: 'date', width:0, microText: 'Masukan Kode', microFormat: 'DD-MM-YYYY', microClass: ''},
+          {key: 'transType',microName: 'Jenis', microType: 'text', width:50, microText: 'Masukan Nama', microClass: ''},
+          {key: 'transAmount',microName: 'Saldo', microType: 'text', width:125, microText: 'Masukan Spesifikasi', microClass: ''},
+        ]
+      },
+      {
+        dataName: 'menuListReportHarian', dataMicro: [
+          {key: 'transNo',microName: 'No. Bukti', microType: 'text', width:110, microText: 'Masukan Nama', microClass: ''},
+          {key: 'coaName',microName: 'Nama Perkiraan', microType: 'text', width:0, microText: 'Masukan Nama', microClass: ''},
+          {key: 'coaCode',microName: 'Perkiraan', microType: 'text', width:110, microText: 'Masukan Nama', microClass: ''},
+          {key: 'transDescription',microName: 'Deskripsi', microType: 'text', width:0, microText: 'Masukan Nama', microClass: ''},
+          {key: 'transIn',microName: 'Penerimaan', microType: 'text', width:125, microText: 'Masukan Spesifikasi', microClass: ''},
+          {key: 'transOut',microName: 'Pengeluaran', microType: 'text', width:125, microText: 'Masukan Spesifikasi', microClass: ''},
+        ]
+      },
+      {
+        dataName: 'routingButton', dataTitle: 'button', dataClass: 'col-md-12', dataMicro: [
+          { key: 'add', microName: 'Simpan', microRouting: 'add', microText: 'Simpan', microClass: 'btn-primary' }
+        ]
+      }
+    ],
+    transData: [
+      {
+        key: '001',
+        header: [
+          { key: 'H001', jenis: 'cash', code: 'KB000001', date: '2023-12-01', name: 'BRI - Pusat', voucher: 'qwerty123', saldo: 10000000, status: 'aktif' }
+        ],
+        table: [
+          { kodeCOA: 'COA0001', namaCOA: 'COA pertama', costCenter: '-', jenis: 'in', uraian: 'tidak ada', amount: 1000000 },
+          { kodeCOA: 'COA0001', namaCOA: 'COA kedua', costCenter: '-', jenis: 'out', uraian: 'tidak ada', amount: 100000 }
+        ],
+        footer: [
+          { note: 'Nggak Ada' }
+        ]
+      },
+    ]
+  },
+  {
+    transTitle: 'Kas & Bank V2',
+    transRouting: 'kasbank-v2-add',
+    transProperties: [
+      {
+        dataName: 'menuAdd', dataMicro: [
+          {componentName: 'fieldHeader', componentTitle: '', componentClass: 'col-md-6', componentMicro: [
+            {key:'jenis', microName: 'Jenis', microType: 'text', microText: 'Jenis Kasbank', microClass: ''},
+            {key:'code', microName: 'Kode Kasbank', microType: 'text', microText: 'Masukan kode kasbank', microClass: ''},
+            {key:'name', microName: 'Nama Kasbank', microType: 'text', microText: 'Masukan Nama Kasbank', microClass: ''},
+          ]},
+          {componentName: 'fieldHeader', componentTitle: '', componentClass: 'col-md-6', componentMicro: [
+            {key:'voucher', microName: 'Kode Voucher', microType: 'text', microText: 'Masukan kode kasbank', microClass: ''},
+            {key: 'date', microName: 'Tanggal Dibuat', microType: 'date', microText: 'Masukan tanggal order', microClass: ''},
+            {key:'saldo', microName: 'Saldo', microType: 'number', microText: 'Masukan Saldo Awal', microClass: ''},
+          ]},
+          {
+            componentName: 'fieldTable', componentTitle: '', componentClass: 'col-md-12', componentMicro: [
+              { key: 'kodeCOA', microName: 'Kode', microType: 'text', width: 100, microText: 'Masukan Kode', microFormat: 'DD-MM-YYYY', microClass: '', },
+              { key: 'namaCOA', microName: 'Nama', microType: 'text', width: 0, microText: 'Masukan Nama', microClass: '', },
+              { key: 'costCenter', microName: 'Cost Center', microType: 'text', width: 0, microText: 'Masukan Spesifikasi', microClass: '', },
+              { key: 'uraian', microName: 'Uraian', microType: 'text', width: 0, microText: 'Masukan Quantity', microClass: '', },
+              { key: 'in', microName: 'In (Masuk)', microType: 'numeric', width: 0, microText: 'Masukan Quantity', microClass: '', },
+              { key: 'out', microName: 'Out (Keluar)', microType: 'numeric', width: 0, microText: 'Masukan Quantity', microClass: '', },
+              { key: 'amount', microName: 'Amount', microType: 'numeric', width: 0, microText: 'Masukan Quantity', microClass: '', },
+            ]
+          },
+          {
+            componentName: 'fieldNote', componentTitle: 'Catatan', componentClass: 'col-md-12', componentMicro: [
+              { key: 'note', microName: 'Note', microType: 'textarea', microText: 'Masukan Catatan Tambahan', microClass: '', microValue:'' }
+            ]
+          },
+          {
+            componentName: 'fieldTotal', componentTitle: 'Total', componentClass: 'col-md-12', componentMicro: [
+              { key: 'in', microName: 'Total Masuk (In)', value: '', editableTotal: false, microType: 'number', microMath: '', microClass: 'col-md-4' },
+              { key: 'out', microName: 'Total Keluar (Out)', value: '', editableTotal: false, microType: 'number', microMath: '', microClass: 'col-md-4' },
+              { key: 'amount', microName: 'Total Amount', value: '', editableTotal: false, microType: 'number', microMath: 'plus', microClass: 'col-md-4' },
+              { key: 'total', microName: 'Saldo Akhir', editableTotal: false, value: '', microType: 'number', microClass: 'col-md-4' }
+            ]
+          },
+          {
+            componentName: 'routingButton', componentTitle: 'button', componentClass: 'col-md-12', componentMicro: [
+              { key: 'back', microName: 'Kembali', microRouting: 'back', microText: 'Kembali', microClass: 'btn-light' },
+              { key: 'submit', microName: '', microRouting: 'add', microText: '', microClass: 'btn-primary' }
+            ]
+          },
+        ]
+      }
+    ],
+  },
+  {
+    transTitle: 'Kas & Bank V2',
+    transRouting: 'kasbank-v2-detail',
+    transProperties: [
+      {
+        dataName: 'menuDetail', dataMicro: [
+          {componentName: 'fieldHeader', componentTitle: '', componentClass: 'col-md-6', componentMicro: [
+            {key:'jenis', microName: 'Jenis', microType: 'text', microText: 'Jenis Kasbank', microClass: ''},
+            {key:'code', microName: 'Kode Kasbank', microType: 'text', microText: 'Masukan kode kasbank', microClass: ''},
+            {key:'name', microName: 'Nama Kasbank', microType: 'text', microText: 'Masukan Nama Kasbank', microClass: ''},
+          ]},
+          {componentName: 'fieldHeader', componentTitle: '', componentClass: 'col-md-6', componentMicro: [
+            {key:'voucher', microName: 'Kode Voucher', microType: 'text', microText: 'Masukan kode kasbank', microClass: ''},
+            {key: 'date', microName: 'Tanggal Dibuat', microType: 'date', microText: 'Masukan tanggal order', microClass: ''},
+            {key:'saldo', microName: 'Saldo', microType: 'number', microText: 'Masukan Saldo Awal', microClass: ''},
+          ]},
+          {
+            componentName: 'fieldTable', componentTitle: '', componentClass: 'col-md-12', componentMicro: [
+              { key: 'kodeCOA', microName: 'Kode', microType: 'text', width: 100, microText: 'Masukan Kode', microFormat: 'DD-MM-YYYY', microClass: '', },
+              { key: 'namaCOA', microName: 'Nama', microType: 'text', width: 0, microText: 'Masukan Nama', microClass: '', },
+              { key: 'costCenter', microName: 'Cost Center', microType: 'text', width: 0, microText: 'Masukan Spesifikasi', microClass: '', },
+              { key: 'uraian', microName: 'Uraian', microType: 'text', width: 0, microText: 'Masukan Quantity', microClass: '', },
+              { key: 'in', microName: 'In (Masuk)', microType: 'numeric', width: 0, microText: 'Masukan Quantity', microClass: '', },
+              { key: 'out', microName: 'Out (Keluar)', microType: 'numeric', width: 0, microText: 'Masukan Quantity', microClass: '', },
+              { key: 'amount', microName: 'Amount', microType: 'numeric', width: 0, microText: 'Masukan Quantity', microClass: '', },
+            ]
+          },
+          {
+            componentName: 'fieldNote', componentTitle: 'Catatan', componentClass: 'col-md-12', componentMicro: [
+              { key: 'note', microName: 'Note', microType: 'textarea', microText: 'Masukan Catatan Tambahan', microClass: '', microValue:'' }
+            ]
+          },
+          {
+            componentName: 'fieldTotal', componentTitle: 'Total', componentClass: 'col-md-12', componentMicro: [
+              { key: 'in', microName: 'Total Masuk (In)', value: '', editableTotal: false, microType: 'number', microMath: '', microClass: 'col-md-4' },
+              { key: 'out', microName: 'Total Keluar (Out)', value: '', editableTotal: false, microType: 'number', microMath: '', microClass: 'col-md-4' },
+              { key: 'amount', microName: 'Total Amount', value: '', editableTotal: false, microType: 'number', microMath: 'plus', microClass: 'col-md-4' },
+              { key: 'total', microName: 'Saldo Akhir', editableTotal: false, value: '', microType: 'number', microClass: 'col-md-4' }
+            ]
+          },
+          {
+            componentName: 'routingButton', componentTitle: 'button', componentClass: 'col-md-12', componentMicro: [
+              { key: 'back', microName: 'Kembali', microRouting: 'back', microText: 'Kembali', microClass: 'btn-light' },
+              { key: 'submit', microName: '', microRouting: 'add', microText: '', microClass: 'btn-primary' }
+            ]
+          },
+        ]
+      }
+    ],
+  },
+  {
+    transTitle: 'Kas & Bank V2',
+    transRouting: 'kasbank-v2-edit',
+    transProperties: [
+      {
+        dataName: 'menuEdit', dataMicro: [
+          {componentName: 'fieldHeader', componentTitle: '', componentClass: 'col-md-6', componentMicro: [
+            {key:'jenis', microName: 'Jenis', microType: 'text', microText: 'Jenis Kasbank', microClass: ''},
+            {key:'code', microName: 'Kode Kasbank', microType: 'text', microText: 'Masukan kode kasbank', microClass: ''},
+            {key:'name', microName: 'Nama Kasbank', microType: 'text', microText: 'Masukan Nama Kasbank', microClass: ''},
+          ]},
+          {componentName: 'fieldHeader', componentTitle: '', componentClass: 'col-md-6', componentMicro: [
+            {key:'voucher', microName: 'Kode Voucher', microType: 'text', microText: 'Masukan kode kasbank', microClass: ''},
+            {key: 'date', microName: 'Tanggal Dibuat', microType: 'date', microText: 'Masukan tanggal order', microClass: ''},
+            {key:'saldo', microName: 'Saldo', microType: 'number', microText: 'Masukan Saldo Awal', microClass: ''},
+          ]},
+          {
+            componentName: 'fieldTable', componentTitle: '', componentClass: 'col-md-12', componentMicro: [
+              { key: 'kodeCOA', microName: 'Kode', microType: 'text', width: 100, microText: 'Masukan Kode', microFormat: 'DD-MM-YYYY', microClass: '', },
+              { key: 'namaCOA', microName: 'Nama', microType: 'text', width: 0, microText: 'Masukan Nama', microClass: '', },
+              { key: 'costCenter', microName: 'Cost Center', microType: 'text', width: 0, microText: 'Masukan Spesifikasi', microClass: '', },
+              { key: 'uraian', microName: 'Uraian', microType: 'text', width: 0, microText: 'Masukan Quantity', microClass: '', },
+              { key: 'jenis', microName: 'Jenis', microType: 'numeric', width: 0, microText: 'Masukan Quantity', microClass: '', },
+              { key: 'amount', microName: 'Amount', microType: 'numeric', width: 0, microText: 'Masukan Quantity', microClass: '', },
+            ]
+          },
+          {
+            componentName: 'fieldNote', componentTitle: 'Catatan', componentClass: 'col-md-12', componentMicro: [
+              { key: 'note', microName: 'Note', microType: 'textarea', microText: 'Masukan Catatan Tambahan', microClass: '', microValue:'' }
+            ]
+          },
+          {
+            componentName: 'fieldTotal', componentTitle: 'Total', componentClass: 'col-md-12', componentMicro: [
+              { key: 'amount', microName: 'Total Amount', value: '', editableTotal: false, microType: 'number', microMath: 'plus', microClass: 'col-md-4' },
+              { key: 'total', microName: 'Saldo Akhir', editableTotal: false, value: '', microType: 'number', microClass: 'col-md-4' }
+            ]
+          },
+          {
+            componentName: 'routingButton', componentTitle: 'button', componentClass: 'col-md-12', componentMicro: [
+              { key: 'back', microName: 'Kembali', microRouting: 'back', microText: 'Kembali', microClass: 'btn-light' },
+              { key: 'submit', microName: '', microRouting: 'add', microText: '', microClass: 'btn-primary' }
+            ]
+          },
+        ]
+      }
+    ],
+  },
+  
+  
+  {
+    transTitle: 'Jurnal Entry',
+    transRouting: 'jurnal-entry',
+  },
+  {
+    transTitle: 'Jurnal Entry',
+    transRouting: 'jurnal-entry-add',
+    transProperties: [
+      {
+        dataName: 'menuAdd', dataMicro: [
+          {componentName: 'fieldHeader', componentTitle: '', componentClass: 'col-md-6', componentMicro: [
+            {key:'transNo', microName: 'Kode Voucher', microType: 'text', microText: 'Masukan kode kasbank', microClass: '', isDisabled: true},
+          ]},
+          {componentName: 'fieldHeader', componentTitle: '', componentClass: 'col-md-6', componentMicro: [
+            {key: 'transEffDate', microName: 'Trans. Date', microType: 'date', microText: 'Masukan tanggal order', microClass: '', isDisabled: false},
+          ]},
+          {
+            componentName: 'fieldTable', componentTitle: '', componentClass: 'col-md-12', componentMicro: [
+              { key: 'Code', microName: 'Kode COA', microType: 'autocomplete', readOnly: false, width: 90, microOption: [], microClass: '', },
+              { key: 'Name', microName: 'Nama COA', microType: 'autocomplete', width: 200, readOnly: false, microOption: [], microClass: '', },
+              { key: 'transCostCenter', microName: 'Cost Center', microType: 'text', width: 0, readOnly: false, microClass: '', },
+              { key: 'transReff', microName: 'No. Reff', microType: 'text', width: 0, readOnly: false, microClass: '', },
+              { key: 'transDescription', microName: 'Uraian', microType: 'text', width: 0, readOnly: false, microClass: '', },
+              // { key: 'Discount', microName: 'Diskon (%)', microType: 'numeric', width: 100, logic: '%', microClass: '', },
+              { key: 'transAmount', microName: 'Amount', microType: 'numeric', width: 125, readOnly: false, microClass: '', },
+              // { key: 'Value', microName: 'Total', microType: 'renderer', width: 125, readOnly: true, microClass: '', },
+            ]
+          },
+          {
+            componentName: 'fieldNote', componentTitle: 'Catatan', componentClass: 'col-md-12', componentMicro: [
+              { key: 'transNotes', microName: 'Note', microType: 'textarea', microText: 'Masukan Catatan Tambahan', microClass: '', microValue:'' }
+            ]
+          },
+          {
+            componentName: 'fieldTotal', componentTitle: 'Total', componentClass: 'col-md-12', componentMicro: [
+              { key: 'transAmount', microName: 'Total Amount', value: '', editableTotal: false, microType: 'text', microMath: 'plus', microClass: 'col-md-4' },
+              // { key: 'diskon', microName: 'Diskon (%)', value: '', editableTotal: true, fixedValue: false, microType: 'number', microMath: 'percent-minus', microClass: 'col-md-4' },
+              { key: 'total', microName: 'Saldo Akhir', editableTotal: false, value: '', microType: 'text', microClass: 'col-md-4' }
+            ]
+          },
+          {
+            componentName: 'routingButton', componentTitle: 'button', componentClass: 'col-md-12', componentMicro: [
+              { key: 'back', microName: 'Kembali', microRouting: 'back', microText: 'Kembali', microClass: 'btn-light' },
+              { key: 'submit', microName: '', microRouting: 'add', microText: '', microClass: 'btn-primary' }
+            ]
+          },
+        ]
+      }
+    ],
+  },
+]
+
+export default transaksi
